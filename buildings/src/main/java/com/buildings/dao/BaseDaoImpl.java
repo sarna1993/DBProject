@@ -8,9 +8,11 @@ import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.buildings.dao.interfaces.BaseDao;
 
+@Transactional
 @SuppressWarnings("hiding")
 public class BaseDaoImpl<Entity extends Serializable> implements BaseDao<Entity> {
 
