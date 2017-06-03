@@ -82,20 +82,22 @@
         <h1><b>DODAWANIE BUDYNKOW I LOKALI</b></h1>
         
         <div class="container">
+        <form action="addBuilding" method="get">
             <label>Numer budynku</label>
-            <input type="text" name="uname" required>
+            <input type="text" name="_name" required>
             <br>
             <label>Powierzchnia budynku</label>
-            <input type="text" name="uname" required>
+            <input type="text" name="_area" required>
             <br>
             <label>Czy jest winda</label>
-            <input type="checkbox" name="uname" required>
+            <input type="checkbox" name="_isElevator" required>
             <br>            
             <label>Liczba pieter</label>
-            <input type="text" name="uname" required>
+            <input type="text" name="_floors" required>
             <br>
 
             <button type="submit">Dodaj budynek</button> 
+            </form>
             <br><br><br><br><br>
 
             <!-- wybor z tabeli DODAC !!!-->
