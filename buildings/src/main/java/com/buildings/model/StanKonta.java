@@ -5,9 +5,12 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -40,7 +43,8 @@ public class StanKonta implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(generator = "SEQ_STAN_KONTA", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_STAN_KONTA", sequenceName = "ADMIN.SEQ_STAN_KONTA", allocationSize=1)
 	@Column(name = "ID_STAN", unique = true, nullable = false, precision = 22, scale = 0)
 	public BigDecimal getIdStan() {
 		return this.idStan;

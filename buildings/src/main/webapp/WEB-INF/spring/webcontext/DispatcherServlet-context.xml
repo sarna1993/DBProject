@@ -32,24 +32,25 @@
     </bean>
 
 	<!-- JPA - EntityManager -->
-	<bean id="entityManagerFactory" 
-			class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-			p:packagesToScan="com.buildings.model"
-            p:dataSource-ref="dataSource"
-			>
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+			p:packagesToScan="com.buildings.model" p:dataSource-ref="dataSource">
 		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="generateDdl" value="true" />
-				<property name="showSql" value="true" />
-			</bean>
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 		</property>
+		<property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+            </props>
+        </property>
 	</bean>
 	
 	<!-- Transaction -->
      <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-    
+        
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<import resource="classpath:buildings-cfg.xml"/>

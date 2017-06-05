@@ -5,9 +5,12 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -21,22 +24,23 @@ public class Budynek implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4061352272679673004L;
-	private BigDecimal idBud;
+	private Integer idBud;
+	private Integer idUlica;
 	private Ulica ulica;
 	private String nrBud;
 	private BigDecimal powBud;
-	private Character czyWinda;
+	private Boolean czyWinda;
 	private BigDecimal liczbaPieter;
 
 	public Budynek() {
 	}
 
-	public Budynek(BigDecimal idBud, Ulica ulica) {
+	public Budynek(Integer idBud, Ulica ulica) {
 		this.idBud = idBud;
 		this.ulica = ulica;
 	}
 
-	public Budynek(BigDecimal idBud, Ulica ulica, String nrBud, BigDecimal powBud, Character czyWinda,
+	public Budynek(Integer idBud, Ulica ulica, String nrBud, BigDecimal powBud, Boolean czyWinda,
 			BigDecimal liczbaPieter) {
 		this.idBud = idBud;
 		this.ulica = ulica;
@@ -47,16 +51,26 @@ public class Budynek implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(generator = "SEQ_BUDYNEK", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_BUDYNEK", sequenceName = "ADMIN.SEQ_BUDYNEK", allocationSize=1)
 	@Column(name = "ID_BUD", unique = true, nullable = false, precision = 22, scale = 0)
-	public BigDecimal getIdBud() {
+	public Integer getIdBud() {
 		return this.idBud;
 	}
 
-	public void setIdBud(BigDecimal idBud) {
+	public void setIdBud(Integer idBud) {
 		this.idBud = idBud;
 	}
-
+	
+	@Column(name = "ID_UL", insertable = false, updatable = false)
+	public Integer getIdUlica() {
+		return idUlica;
+	}
+	
+	public void setIdUlica(Integer idUlica) {
+		this.idUlica = idUlica;
+	}
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_UL", nullable = false)
 	public Ulica getUlica() {
@@ -86,11 +100,11 @@ public class Budynek implements java.io.Serializable {
 	}
 
 	@Column(name = "CZY_WINDA", length = 1)
-	public Character getCzyWinda() {
+	public Boolean getCzyWinda() {
 		return this.czyWinda;
 	}
 
-	public void setCzyWinda(Character czyWinda) {
+	public void setCzyWinda(Boolean czyWinda) {
 		this.czyWinda = czyWinda;
 	}
 
@@ -102,5 +116,4 @@ public class Budynek implements java.io.Serializable {
 	public void setLiczbaPieter(BigDecimal liczbaPieter) {
 		this.liczbaPieter = liczbaPieter;
 	}
-
 }

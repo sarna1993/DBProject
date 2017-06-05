@@ -7,10 +7,13 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -54,7 +57,8 @@ public class Pracownik implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(generator = "SEQ_PRACOWNIK", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_PRACOWNIK", sequenceName = "ADMIN.SEQ_PRACOWNIK", allocationSize=1)
 	@Column(name = "ID_PRAC", unique = true, nullable = false, precision = 22, scale = 0)
 	public BigDecimal getIdPrac() {
 		return this.idPrac;

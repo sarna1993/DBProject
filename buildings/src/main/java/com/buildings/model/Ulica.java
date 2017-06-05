@@ -1,16 +1,18 @@
 package com.buildings.model;
 // Generated Jun 2, 2017 5:05:24 PM by Hibernate Tools 4.3.1.Final
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -24,7 +26,7 @@ public class Ulica implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6054158643347272286L;
-	private BigDecimal idUl;
+	private Integer idUl;
 	private Miasto miasto;
 	private String nazwaUl;
 	private Set<Firma> firmas = new HashSet<Firma>(0);
@@ -33,12 +35,12 @@ public class Ulica implements java.io.Serializable {
 	public Ulica() {
 	}
 
-	public Ulica(BigDecimal idUl, Miasto miasto) {
+	public Ulica(Integer idUl, Miasto miasto) {
 		this.idUl = idUl;
 		this.miasto = miasto;
 	}
 
-	public Ulica(BigDecimal idUl, Miasto miasto, String nazwaUl, Set<Firma> firmas, Set<Budynek> budyneks) {
+	public Ulica(Integer idUl, Miasto miasto, String nazwaUl, Set<Firma> firmas, Set<Budynek> budyneks) {
 		this.idUl = idUl;
 		this.miasto = miasto;
 		this.nazwaUl = nazwaUl;
@@ -47,13 +49,14 @@ public class Ulica implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(generator = "SEQ_ULICA", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_ULICA", sequenceName = "ADMIN.SEQ_ULICA", allocationSize=1)
 	@Column(name = "ID_UL", unique = true, nullable = false, precision = 22, scale = 0)
-	public BigDecimal getIdUl() {
+	public Integer getIdUl() {
 		return this.idUl;
 	}
 
-	public void setIdUl(BigDecimal idUl) {
+	public void setIdUl(Integer idUl) {
 		this.idUl = idUl;
 	}
 

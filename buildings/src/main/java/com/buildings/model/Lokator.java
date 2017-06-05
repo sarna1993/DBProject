@@ -7,10 +7,13 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -58,7 +61,8 @@ public class Lokator implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(generator = "SEQ_LOKATOR", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_LOKATOR", sequenceName = "ADMIN.SEQ_LOKATOR", allocationSize=1)
 	@Column(name = "ID_LOKAT", unique = true, nullable = false, precision = 22, scale = 0)
 	public BigDecimal getIdLokat() {
 		return this.idLokat;

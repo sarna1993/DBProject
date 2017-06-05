@@ -2,6 +2,9 @@ package com.buildings.dao.interfaces;
 
 import java.io.Serializable;
 
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Criteria;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -51,4 +54,24 @@ public interface BaseDao <Entity> extends InitializingBean {
 	  * Tworzy kryterium wyszukiwania dla danej klasy
 	  */
 	 Criteria createCriteria (Class<? extends Serializable> aClass);
+	 
+	 /**
+	  * Tworzy zapytanie HQL (zmapowane obiekty)
+	  */
+	 Query createQuery(String query);
+	 
+	 /**
+	  * Tworzy zapytanie, wynik mapowany do klasy Class<T>
+	  */
+	 <T> TypedQuery<T> createQuery(String query, Class<T> clas);
+	 
+	 /**
+	  * Twworzy zapytanie natywne
+	  */
+	 Query createNativeQuery(String query);
+	 
+	 /**
+	  * Tworzy zapytanie po nazwie
+	  */
+	 Query createNamedQuery(String name);
 }

@@ -10,22 +10,34 @@
 		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 		http://www.springframework.org/schema/tx 
   		http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
-  		
+  	
+  	
   	<!--  kontrolery -->
   	<bean id="buildingController" class="com.buildings.controllers.BuildingController">
         <property name="budynekService" ref="budynekService"/>
+        <property name="ulicaService" ref="ulicaService"/>
+        <property name="lokalService" ref="lokalService"/>
     </bean>
     
     <!--  serwisy  -->
-    <bean id="budynekService" class="com.buildings.services.BudynekServiceImpl">
+    <bean id="baseService" class="com.buildings.services.BaseServiceImpl"/>
+    <bean id="budynekService" class="com.buildings.services.BudynekServiceImpl" parent="baseService">
         <property name="budynekDao" ref="budynekDao"/>
         <property name="ulicaDao" ref="ulicaDao"/>
     </bean>
     
-    <!--  dao  -->
-  	<bean id="budynekDao" class="com.buildings.dao.BudynekDaoImpl">
+    <bean id="ulicaService" class="com.buildings.services.UlicaServiceImpl" parent="baseService">
+        <property name="ulicaDao" ref="ulicaDao"/>
     </bean>
     
-    <bean id="ulicaDao" class="com.buildings.dao.UlicaDaoImpl">
+    <bean id="lokalService" class="com.buildings.services.LokalServiceImpl" parent="baseService">
+    	<property name="lokalDao" ref="lokalDao"/>
     </bean>
+    
+    <!--  dao  -->
+    <bean id="baseDao" class="com.buildings.dao.BaseDaoImpl"/>
+  	<bean id="budynekDao" class="com.buildings.dao.BudynekDaoImpl" parent="baseDao"/>
+    <bean id="ulicaDao" class="com.buildings.dao.UlicaDaoImpl" parent="baseDao"/>
+ 	<bean id="miastoDao" class="com.buildings.dao.MiastoDaoImpl" parent="baseDao"/>
+ 	<bean id="lokalDao" class="com.buildings.dao.LokalDaoImpl" parent="baseDao"/>
 </beans>

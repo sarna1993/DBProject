@@ -1,6 +1,8 @@
 package com.buildings.services;
 
-import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.buildings.dao.interfaces.BudynekDao;
 import com.buildings.dao.interfaces.UlicaDao;
@@ -23,21 +25,30 @@ public class BudynekServiceImpl implements BudynekService {
 	}
 	
 	@Override
-	public void addBudynek(String nrBudynku, BigDecimal pow, boolean isWinda, BigDecimal liczbaPieter) {
+	public Map<Integer, String> getBudynekMap() {
+		Map<Integer, String> budMap = new HashMap<Integer, String>();
+		List<Budynek> budList = budynekDao.getBudynekList();
+		for(final Budynek budynek : budList) {
+			String budFullName = budynek.getNrBud() + " - " + ulicaDao.getUlicaMiastoName4IdUl(budynek.getIdUlica());
+			budMap.put(budynek.getIdBud(), budFullName);
+		}
+		return budMap;
+	}
+	
+	@Override
+	public void addBudynek(final Budynek bud) {
 		// FIXME: walidatory czy taki budynek nie istnieje pod danym aderesem, nie jest za duzy itp
-		Character czyWinda = isWinda ? '1' : '0';
-		Ulica ulica = ulicaDao.find(Ulica.class, new BigDecimal(2));
+		Ulica ulica = ulicaDao.find(Ulica.class, bud.getIdUlica());
 		Budynek budynek = new Budynek();
-		budynek.setIdBud(new BigDecimal(2));
-		budynek.setLiczbaPieter(liczbaPieter);
-		budynek.setNrBud(nrBudynku);
-		budynek.setPowBud(pow);
-		budynek.setCzyWinda(czyWinda);
+		budynek.setIdBud(null);
+		budynek.setLiczbaPieter(bud.getLiczbaPieter());
+		budynek.setNrBud(bud.getNrBud());
+		budynek.setPowBud(bud.getPowBud());
+		budynek.setCzyWinda(bud.getCzyWinda());
 		budynek.setUlica(ulica);
-		// na razie na chama wpycham na baze zeby pokazac jak dzialaja poszczegolne metody :D
 		budynekDao.persist(budynek);
 	}
-
+	
 	@Override
 	public void updateBudynek(Budynek budynek) {
 		// walidatory
@@ -52,4 +63,6 @@ public class BudynekServiceImpl implements BudynekService {
 		
 		budynekDao.remove(budynek);
 	}
+
+
 }

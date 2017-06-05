@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -30,7 +32,6 @@ public class BaseDaoImpl<Entity extends Serializable> implements BaseDao<Entity>
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -81,4 +82,23 @@ public class BaseDaoImpl<Entity extends Serializable> implements BaseDao<Entity>
 		entityManager.clear();
 	}
 
+	@Override
+	public Query createQuery(String query) {
+		return entityManager.createQuery(query);
+	}
+
+	@Override
+	public <T> TypedQuery<T> createQuery(String query, Class<T> clas) {
+		return entityManager.createQuery(query, clas);
+	}
+	
+	@Override
+	public Query createNativeQuery(String query) {
+		return entityManager.createNativeQuery(query);
+	}
+	
+	@Override
+	public Query createNamedQuery(String name) {
+		return entityManager.createNamedQuery(name);
+	}
 }

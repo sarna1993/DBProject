@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <style>
@@ -82,41 +84,90 @@
         <h1><b>DODAWANIE BUDYNKOW I LOKALI</b></h1>
         
         <div class="container">
-        <form action="addBuilding" method="get">
-            <label>Numer budynku</label>
-            <input type="text" name="_name" required>
-            <br>
-            <label>Powierzchnia budynku</label>
-            <input type="text" name="_area" required>
-            <br>
-            <label>Czy jest winda</label>
-            <input type="checkbox" name="_isElevator" required>
-            <br>            
-            <label>Liczba pieter</label>
-            <input type="text" name="_floors" required>
-            <br>
-
-            <button type="submit">Dodaj budynek</button> 
-            </form>
-            <br><br><br><br><br>
-
+		<form:form method="post" action="addBuilding" commandName="budModel">
+ 		<table>
+ 		<tr>
+ 		<td>Ulica</td>
+ 		</tr>
+ 		<tr>
+ 		<td>
+ 		<form:select path="idUlica">
+ 		<form:option value="" label="...." />
+ 		<form:options items="${ulicaList}"/>
+ 		</form:select>
+ 		</td>
+ 		</tr>
+ 		<tr>
+        <td><form:label path="nrBud">Numer budynku</form:label></td>
+        </tr>
+        <tr>
+        <td><form:input path="nrBud" /></td>
+ 		</tr>
+ 		<tr>
+        <td><form:label path="powBud">Powierzchnia budynku</form:label></td>
+        </tr>
+        <tr>
+        <td><form:input path="powBud" /></td>
+      	</tr>
+      	 <tr>
+        <td><form:label path="czyWinda">Czy jest winda</form:label></td>
+        </tr>
+        <tr>
+        <td><form:checkbox path="czyWinda" /></td>
+      	</tr>
+      	<tr>
+        <td><form:label path="liczbaPieter">Liczba pieter</form:label></td>
+        </tr>
+        <tr>
+        <td><form:input path="liczbaPieter" /></td>
+      	</tr>
+ 		</table>
+ 		<button type="submit">Dodaj budynek</button> 
+ 		</form:form>
+		<br>
+		<hr>
+		<br>
             <!-- wybor z tabeli DODAC !!!-->
-
-            <label>Numer lokalu</label>
-            <input type="text" name="uname" required>
-            <br>
-            <label>Powierzchnia lokalu</label>
-            <input type="text" name="uname" required>
-            <br>
-            <label>Czy jest balkon</label>
-            <input type="checkbox" name="uname" required>
-            <br>            
-            <label>Liczba pomieszczen</label>
-            <input type="text" name="uname" required>
-            <br>
-
-            <button type="submit">Dodaj lokal</button>
-        
+		<form:form method="post" action="addPlace" commandName="lokModel">
+		<table style=margin-left:50px;">
+		<tr>
+ 		<td>Budynek</td>
+ 		</tr>
+ 		<tr>
+ 		<td>
+ 		<form:select path="idBud">
+ 		<form:option value="" label="...." />
+ 		<form:options items="${budynekList}"/>
+ 		</form:select>
+ 		</td>
+ 		</tr>
+ 		<tr> 
+ 		<td><form:label path="nrLok">Numer lokalu</form:label></td>
+		</tr>
+		<tr>
+		<td><form:input path="nrLok" /></td>
+		</tr>
+		<tr>
+		<td><form:label path="powLok">Powierzchnia lokalu</form:label></td>
+		</tr>
+		<tr>
+		<td><form:input path="powLok" /></td>
+		</tr>
+		<tr>
+		<td><form:label path="isBalkon">Czy jest balkon</form:label></td>
+		</tr>
+		<tr>
+		<td><form:checkbox path="isBalkon" /></td>
+		</tr>
+		<tr>
+		<td><form:label path="liczbaPom">Liczba pomieszczen</form:label></td>
+		</tr>
+		<tr>
+		<td><form:input path="liczbaPom" /></td>
+		</tr>
+ 		</table>
+ 		<button type="submit">Dodaj lokal</button>
+ 		</form:form>
         </div>
     </body>
     

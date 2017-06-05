@@ -2,10 +2,12 @@ package com.buildings.model;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -18,50 +20,52 @@ public class Okres implements Serializable {
 	private static final long serialVersionUID = -9107098609022904692L;
 	
 	@Id
+	@GeneratedValue(generator = "SEQ_OKRES", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_OKRES", sequenceName = "ADMIN.SEQ_OKRES", allocationSize=1)
 	@Column(name = "ID_OKR", unique = true, nullable = false, precision = 22, scale = 0)
-	private BigDecimal idOkr;
+	private Integer idOkr;
 	
 	@Column(name = "MIES", precision = 22, scale = 0)
-	private BigDecimal mies;
+	private Integer mies;
 	
 	@Column(name = "ROK", precision = 22, scale = 0)
-	private BigDecimal rok;
+	private Integer rok;
 
 	public Okres() {
 	}
 
-	public Okres(BigDecimal idOkr) {
+	public Okres(Integer idOkr) {
 		this.idOkr = idOkr;
 	}
 
-	public Okres(BigDecimal idOkr, BigDecimal mies, BigDecimal rok) {
+	public Okres(Integer idOkr, Integer mies, Integer rok) {
 		this.idOkr = idOkr;
 		this.mies = mies;
 		this.rok = rok;
 	}
 
-	public BigDecimal getIdOkr() {
+	public Integer getIdOkr() {
 		return this.idOkr;
 	}
 
-	public void setIdOkr(BigDecimal idOkr) {
+	public void setIdOkr(Integer idOkr) {
 		this.idOkr = idOkr;
 	}
 
 
-	public BigDecimal getMies() {
+	public Integer getMies() {
 		return this.mies;
 	}
 
-	public void setMies(BigDecimal mies) {
+	public void setMies(Integer mies) {
 		this.mies = mies;
 	}
 
-	public BigDecimal getRok() {
+	public Integer getRok() {
 		return this.rok;
 	}
 
-	public void setRok(BigDecimal rok) {
+	public void setRok(Integer rok) {
 		this.rok = rok;
 	}
 
