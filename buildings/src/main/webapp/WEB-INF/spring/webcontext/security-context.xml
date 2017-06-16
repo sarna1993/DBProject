@@ -9,20 +9,34 @@
 		http://www.springframework.org/schema/beans	
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/springcontext-3.2.xsd">
-	<security:http auto-config="true">
-		<security:intercept-url pattern="/products/add"
-			access="ROLE_ADMIN" />
-		<security:form-login login-page="/login"
-			default-target-url="/products/add" authentication-failure-url="/loginfailed" />
-		<security:logout logout-success-url="/logout" />
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+		
+	<context:property-placeholder location="classpath:app.properties" />
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/admin" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/building/add" access="hasRole('ADMIN')" />
+		<security:intercept-url pattern="/account/manage" access="hasRole('ADMIN')" />
+		<security:form-login  login-page="/login" username-parameter="uname" password-parameter="psw" 
+		authentication-success-handler-ref="authenticationSuccessHandler"
+		default-target-url="/admin" authentication-failure-url="/login?error" />
+		<security:logout logout-success-url="/login?logout" />
+		<security:access-denied-handler error-page="/403" />
 	</security:http>
+	
 	<security:authentication-manager>
 		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="Admin" password="Admin123"
-					authorities="ROLE_ADMIN" />
-			</security:user-service>
+			<security:jdbc-user-service data-source-ref="dataSource" 
+				authorities-by-username-query="select login, rola from rola WHERE login = ?"
+					users-by-username-query="select login, passw, aktywny from konto WHERE login = ?"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    	<property name="driverClassName" value="${database.driver}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.user}"/>
+        <property name="password" value="${database.password}"/>
+     </bean>
+     
+     <bean id="authenticationSuccessHandler" class="com.buildings.authentication.AuthSuccessHandler"/>
 </beans>

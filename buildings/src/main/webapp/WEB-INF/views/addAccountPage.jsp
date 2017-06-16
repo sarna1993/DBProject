@@ -1,5 +1,6 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <style>
@@ -39,14 +40,6 @@
         font-size: 18px;
     }
     
-    .zalogowanoJako {
-        text-align: right;
-        color: black;
-        font-family: verdana;
-        font-size: 20px;
-        color: #7f5dff;
-    }
-    
             /*naglowek*/
     h1 {
         text-align: center;
@@ -80,40 +73,43 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="zalogowanoJako">
-            Zalogowano jako: ADMIN <br> <br>
-        </div> 
+        <jsp:include page="commonHeader.jsp" />
         
         <h1><b>DODAWANIE KONTA PRACOWNIKA/LOKATORA</b></h1>
        
         <div class="container">
+        <form:form method="post" action="addAccount" commandName="kontoModel">
             <label>Typ konta</label> 
             <br>
-            <select name="typKonta" >
-                 <option value="lokator" size="60">Lokator</option>
-                 <option value="manager">Manager</option>
-                 <option value="basia">Basia</option>
-                 <option value="admin">Admin</option>
-            </select> 
+            <form:select path="typKonta">
+ 			<form:option value="" label="...." />
+ 			<form:options items="${rolesList}"/>
+ 			</form:select>
             <br><br>
-            <label>Imie</label>
-            <input type="text" name="uname" required>
+            <form:label path="login">Login</form:label>
+            <form:input path="login" required="required"/>
             <br>
-            <label>Nazwisko</label>
-            <input type="text" name="uname" required>
+            <form:label path="passw">Haslo</form:label>
+            <form:input type="password" path="passw" required="required"/>
             <br>
-            <label>Pesel</label>
-            <input type="text" name="uname" required>
+            <form:label path="imie">Imie</form:label>
+            <form:input path="imie" required="required"/>
             <br>
-            <label>Telefon</label>
-            <input type="text" name="uname" required>
+            <form:label path="nazwisko">Nazwisko</form:label>
+            <form:input path="nazwisko" required="required"/>
             <br>
-            <label>E-mail</label>
-            <input type="text" align="left" name="uname" required>
-            <br> <br>
+            <form:label path="pesel">Pesel</form:label>
+            <form:input path="pesel" />
+            <br>
+            <form:label path="telefon">Telefon</form:label>
+            <form:input path="telefon" required="required"/>
+            <br>
+            <form:label path="email">Email</form:label>
+            <form:input path="email" required="required"/>
+            <br>
        
         <button type="submit">Dodaj osobe</button>
-        
+        </form:form>
         </div>
         
     </body>

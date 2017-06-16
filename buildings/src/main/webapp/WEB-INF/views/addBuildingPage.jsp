@@ -41,14 +41,6 @@
         font-size: 18px;
     }
     
-    .zalogowanoJako {
-        text-align: right;
-        color: black;
-        font-family: verdana;
-        font-size: 20px;
-        color: #7f5dff;
-    }
-    
         /*naglowek*/
     h1 {
         text-align: center;
@@ -77,9 +69,7 @@
     </head>
     
     <body>
-        <div class="zalogowanoJako">
-            Zalogowano jako: ADMIN 
-        </div> 
+ 		<jsp:include page="commonHeader.jsp" />
         
         <h1><b>DODAWANIE BUDYNKOW I LOKALI</b></h1>
         
@@ -129,7 +119,7 @@
 		<br>
             <!-- wybor z tabeli DODAC !!!-->
 		<form:form method="post" action="addPlace" commandName="lokModel">
-		<table style=margin-left:50px;">
+		<table style="margin-left:50px;">
 		<tr>
  		<td>Budynek</td>
  		</tr>

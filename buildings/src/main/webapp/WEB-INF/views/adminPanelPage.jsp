@@ -38,15 +38,6 @@
         transform: translateY(50%);
         /* margin-top: 300px;/* half of #content height*/
     }
-    
-    .zalogowanoJako {
-        text-align: right;
-        color: black;
-        font-family: verdana;
-        font-size: 20px;
-        color: #7f5dff;
-    }
-    
 </style>    
 
     <head>
@@ -55,13 +46,10 @@
     </head>
     
     <body>
-        <div class="zalogowanoJako">
-            Zalogowano jako: ADMIN <br> <br>
-        </div> 
-        
+		<jsp:include page="commonHeader.jsp" />
         <div class="container" align="center">
-            <form action="/buildings/account/add">
-                <button>Dodaj konto pracownika/lokatora</button><br>
+            <form action="/buildings/account/manage">
+                <button>Zarzadzaj kontami</button><br>
             </form>    
             <form action="/buildings/building/add">    
                 <button>Rejestruj budynki i lokale</button>
