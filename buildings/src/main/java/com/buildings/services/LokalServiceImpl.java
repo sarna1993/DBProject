@@ -17,7 +17,7 @@ import com.buildings.model.Lokator;
 import com.buildings.model.Wynajem;
 import com.buildings.model.WynajemExt;
 import com.buildings.services.interfaces.LokalService;
-import com.buildings.src.man.java.utils.DateUtils;
+import com.buildings.utils.DateUtils;
 
 public class LokalServiceImpl implements LokalService {
 

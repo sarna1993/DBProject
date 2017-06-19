@@ -1,4 +1,4 @@
-package com.buildings.src.man.java.utils;
+package com.buildings.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
