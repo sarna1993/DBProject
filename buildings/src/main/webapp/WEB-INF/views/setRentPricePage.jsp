@@ -6,6 +6,8 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <style>
@@ -44,15 +46,6 @@
         text-transform: uppercase;
         font-size: 18px;
     }
-    
-    .zalogowanoJako {
-        text-align: right;
-        color: black;
-        font-family: verdana;
-        font-size: 20px;
-        color: #7f5dff;
-    }
-    
             /*naglowek*/
     h1 {
         text-align: center;
@@ -93,56 +86,152 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript">
+		function getUlica4SelectedMiasto(){
+		var city = $('#city').val();
+		$.ajax({
+			url : '../../ajax/getUlica4SelectedMiasto',
+			method : 'POST',
+			datatType : 'json',
+			data : {
+				city : city
+			},
+   		error: function(xhr, response, errorThrown){
+       		alert(errorThrown);
+    	},
+			success : function(data) {
+				var options = '';
+				if (data != null) {
+					options = options + '<option value="-1">Wybierz ulice</option>';
+					$.each(data, function(key, val) {
+						options = options + '<option value="' + key + '">' + val + '</option>';
+					});
+					$('#street').html(options);
+				}
+			}
+		});
+		}
+		</script>
+		<script type="text/javascript">
+		function getBudynek4SelectedUlica(){
+		var street = $('#street').val();
+		$.ajax({
+			url : '../../ajax/getBudynek4SelectedUlica',
+			method : 'POST',
+			datatType : 'json',
+			data : {
+				street : street
+			},
+   		error: function(xhr, response, errorThrown){
+       		alert(errorThrown);
+    	},
+			success : function(data) {
+				var options = '';
+				if (data != null) {
+					options = options + '<option value="-1">Wybierz budynek</option>';
+					$.each(data, function(key, val) {
+						options = options + '<option value="' + key + '">' + val + '</option>';
+					});
+					$('#building').html(options);
+				}
+			}
+		});
+		}
+	</script>
+	<script type="text/javascript">
+		function getLokal4SelectedBudynek(){
+		var building = $('#building').val();
+		$.ajax({
+			url : '../../ajax/getLokal4SelectedBudynek',
+			method : 'POST',
+			datatType : 'json',
+			data : {
+				building : building
+			},
+   		error: function(xhr, response, errorThrown){
+       		alert(errorThrown);
+    	},
+			success : function(data) {
+				var options = '';
+				if (data != null) {
+					options = options + '<option value="-1">Wybierz lokal</option>';
+					$.each(data, function(key, val) {
+						options = options + '<option value="' + key + '">' + val + '</option>';
+					});
+					$('#place').html(options);
+				}
+			}
+		});
+		}
+	</script>
+	<script type="text/javascript">
+		function getStaraCena4SelectedLokal(){
+		var place = $('#place').val();
+		$.ajax({
+			url : '../../ajax/getStaraCena4SelectedLokal',
+			method : 'POST',
+			datatType : 'json',
+			data : {
+				place : place
+			},
+   		error: function(xhr, response, errorThrown){
+       		alert(errorThrown);
+    	},
+			success : function(data) {
+				if (data != null) {
+					$('#oldPrice').val(data);
+				}
+			}
+		});
+		}
+	</script>
     </head>
     <body>
-        <div class="zalogowanoJako">
-            Zalogowano jako: MANAGER <br> <br>
-        </div> 
-        
+        <jsp:include page="commonHeader.jsp" />
         <h1><b>USTAL CENNIK</b></h1>
         <br>
+        <form:form method="post" action="addNewPrice" commandName="cennikModel">
         <table cellpadding="10">
         <tr>
           <th>Miasto</th>
           <th>Ulica</th>
           <th>Nr budynku</th>
           <th>Nr lokalu</th>
-          <th>Pesel wynajmującego</th>
+          <th>Data obowiazywania</th>
           <th>Stara cena</th>
           <th>Cena</th>
         </tr>
         <tr>
-          <td><select name="nazwa">
-            <option>Miasto 1</option>
-            <option selected="selected">Miasto 2<option>
-            </select></td>
-          <td><select name="nazwa">
-            <option>Tu wpisz pierwszą możliwość</option>
-            <option selected="selected">Tu wpisz drugą możliwość<option>
+		  <td>
+			<select id="city" name="city" onchange="getUlica4SelectedMiasto()">
+				<option value="">....</option>
+				<c:forEach items="${miastoList}" var="miastoList">
+					<option value="${miastoList.idMiast}">${miastoList.nazwaMiast}</option>
+				</c:forEach>
+			</select>
+		  </td>
+          <td>
+          	<select id="street" name="street" onchange="getBudynek4SelectedUlica()">
+				<option value="">....</option>
+			</select>
+            </td> 
+          <td><select id="building" name="building" onchange="getLokal4SelectedBudynek()">
+            <option value="">....</option>
             </select></td> 
-          <td><select name="nazwa">
-            <option>Tu wpisz pierwszą możliwość</option>
-            <option selected="selected">Tu wpisz drugą możliwość<option>
-            </select></td> 
-          <td><select name="nazwa">
-            <option>Tu wpisz pierwszą możliwość</option>
-            <option selected="selected">Tu wpisz drugą możliwość<option>
-            </select></td> 
-          <td><select name="nazwa">
-            <option>Tu wpisz pierwszą możliwość</option>
-            <option selected="selected">Tu wpisz drugą możliwość<option>
-            </select></td>
-            <td>Stara cena</td>
-          <td><input type="text" name="uname" required></td>
+          <td><form:select id="place" name="place" path="idLokal" onchange="getStaraCena4SelectedLokal()">
+            <form:option value="">....</form:option>
+            </form:select></td> 
+          <td><form:input type="text" id="dateTo" name="dateTo" path="dataDo"/></td>
+          <td><input type="text" id="oldPrice" name="oldPrice" disabled></td>
+          <td><form:input type="text" id="newPrice" name="newPrice" required="required" path="aktualnaCena"/></td>
         </tr>
-        
-        
       </table>
         <div class="container">
         <button type="submit">Ustal cennik</button>
         
         </div>
-        
+        </form:form>
     </body>
 </html>
 

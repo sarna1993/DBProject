@@ -46,14 +46,6 @@
         /* margin-top: 300px;/* half of #content height*/
     }
     
-    .zalogowanoJako {
-        text-align: right;
-        color: black;
-        font-family: verdana;
-        font-size: 20px;
-        color: #7f5dff;
-    }
-    
 </style>    
 
     <head>
@@ -62,10 +54,7 @@
     </head>
     
     <body>
-        <div class="zalogowanoJako">
-            Zalogowano jako: BASIA <br> <br>
-        </div> 
-        
+        <jsp:include page="commonHeader.jsp" />
         <div class="container" align="center">
             <form action="/buildings/account/add">
                 <button>Dodaj nowego lokatora</button><br>

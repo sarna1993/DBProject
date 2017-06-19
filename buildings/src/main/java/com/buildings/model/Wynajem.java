@@ -1,7 +1,6 @@
 package com.buildings.model;
 // Generated Jun 2, 2017 5:05:24 PM by Hibernate Tools 4.3.1.Final
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,9 +29,10 @@ public class Wynajem implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1000644206029040331L;
-	private BigDecimal idWynaj;
+	private Integer idWynaj;
+	private Integer idLokator;
 	private Lokator lokator;
-	private BigDecimal idLokal;
+	private Integer idLokal;
 	private String nrUmowy;
 	private Double cenaWynaj;
 	private Date dtUmowyOd;
@@ -42,13 +42,13 @@ public class Wynajem implements java.io.Serializable {
 	public Wynajem() {
 	}
 
-	public Wynajem(BigDecimal idWynaj, Lokator lokator, BigDecimal idLokal) {
+	public Wynajem(Integer idWynaj, Lokator lokator, Integer idLokal) {
 		this.idWynaj = idWynaj;
 		this.lokator = lokator;
 		this.idLokal = idLokal;
 	}
 
-	public Wynajem(BigDecimal idWynaj, Lokator lokator, BigDecimal idLokal, String nrUmowy, Double cenaWynaj,
+	public Wynajem(Integer idWynaj, Lokator lokator, Integer idLokal, String nrUmowy, Double cenaWynaj,
 			Date dtUmowyOd, Date dtUmowyDo, Set<Zgloszenie> zgloszenies) {
 		this.idWynaj = idWynaj;
 		this.lokator = lokator;
@@ -64,14 +64,23 @@ public class Wynajem implements java.io.Serializable {
 	@GeneratedValue(generator = "SEQ_WYNAJEM", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "SEQ_WYNAJEM", sequenceName = "ADMIN.SEQ_WYNAJEM", allocationSize=1)
 	@Column(name = "ID_WYNAJ", unique = true, nullable = false, precision = 22, scale = 0)
-	public BigDecimal getIdWynaj() {
+	public Integer getIdWynaj() {
 		return this.idWynaj;
 	}
 
-	public void setIdWynaj(BigDecimal idWynaj) {
+	public void setIdWynaj(Integer idWynaj) {
 		this.idWynaj = idWynaj;
 	}
 
+	@Column(name = "ID_LOKAT", insertable = false, updatable = false)
+	public Integer getIdLokator() {
+		return this.idLokator;
+	}
+	
+	public void setIdLokator(Integer idLokator) {
+		this.idLokator = idLokator;
+	}
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_LOKAT", nullable = false)
 	public Lokator getLokator() {
@@ -83,11 +92,11 @@ public class Wynajem implements java.io.Serializable {
 	}
 
 	@Column(name = "ID_LOKAL", nullable = false, precision = 22, scale = 0)
-	public BigDecimal getIdLokal() {
+	public Integer getIdLokal() {
 		return this.idLokal;
 	}
 
-	public void setIdLokal(BigDecimal idLokal) {
+	public void setIdLokal(Integer idLokal) {
 		this.idLokal = idLokal;
 	}
 

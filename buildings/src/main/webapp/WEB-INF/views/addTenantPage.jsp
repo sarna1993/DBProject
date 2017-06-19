@@ -45,14 +45,6 @@
         font-size: 18px;
     }
     
-    .zalogowanoJako {
-        text-align: right;
-        color: black;
-        font-family: verdana;
-        font-size: 20px;
-        color: #7f5dff;
-    }
-    
             /*naglowek*/
     h1 {
         text-align: center;
@@ -86,9 +78,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="zalogowanoJako">
-            Zalogowano jako: BASIA <br> <br>
-        </div> 
+		<jsp:include page="commonHeader.jsp" />
         
         <h1><b>USTAL CENNIK</b></h1>
        

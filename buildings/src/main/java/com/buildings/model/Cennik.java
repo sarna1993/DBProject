@@ -1,7 +1,6 @@
 package com.buildings.model;
 // Generated Jun 2, 2017 5:05:24 PM by Hibernate Tools 4.3.1.Final
 
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,8 +23,8 @@ public class Cennik implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -4780921836556071887L;
-	private BigDecimal idCennik;
-	private BigDecimal idLokal;
+	private Integer idCennik;
+	private Integer idLokal;
 	private Date dtCenOd;
 	private Date dtCenDo;
 	private Double cena;
@@ -33,12 +32,12 @@ public class Cennik implements java.io.Serializable {
 	public Cennik() {
 	}
 
-	public Cennik(BigDecimal idCennik, BigDecimal idLokal) {
+	public Cennik(Integer idCennik, Integer idLokal) {
 		this.idCennik = idCennik;
 		this.idLokal = idLokal;
 	}
 
-	public Cennik(BigDecimal idCennik, BigDecimal idLokal, Date dtCenOd, Date dtCenDo, Double cena) {
+	public Cennik(Integer idCennik, Integer idLokal, Date dtCenOd, Date dtCenDo, Double cena) {
 		this.idCennik = idCennik;
 		this.idLokal = idLokal;
 		this.dtCenOd = dtCenOd;
@@ -50,20 +49,20 @@ public class Cennik implements java.io.Serializable {
 	@GeneratedValue(generator = "SEQ_CENNIK", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "SEQ_CENNIK", sequenceName = "ADMIN.SEQ_CENNIK", allocationSize=1)
 	@Column(name = "ID_CENNIK", unique = true, nullable = false, precision = 22, scale = 0)
-	public BigDecimal getIdCennik() {
+	public Integer getIdCennik() {
 		return this.idCennik;
 	}
 
-	public void setIdCennik(BigDecimal idCennik) {
+	public void setIdCennik(Integer idCennik) {
 		this.idCennik = idCennik;
 	}
 
 	@Column(name = "ID_LOKAL", nullable = false, precision = 22, scale = 0)
-	public BigDecimal getIdLokal() {
+	public Integer getIdLokal() {
 		return this.idLokal;
 	}
 
-	public void setIdLokal(BigDecimal idLokal) {
+	public void setIdLokal(Integer idLokal) {
 		this.idLokal = idLokal;
 	}
 

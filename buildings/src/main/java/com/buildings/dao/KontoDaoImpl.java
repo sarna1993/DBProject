@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.util.Assert;
 
 import com.buildings.dao.interfaces.KontoDao;
+import com.buildings.enums.TypKontaEnum;
 import com.buildings.model.Konto;
 import com.buildings.model.KontoRolaV;
 
@@ -57,5 +58,14 @@ public class KontoDaoImpl extends BaseDaoImpl<Konto> implements KontoDao {
 		@SuppressWarnings("unchecked")
 		List<Konto> wynik = cr.list();
 		return !wynik.isEmpty() ? wynik.get(0) : null;
+	}
+
+	@Override
+	public List<KontoRolaV> getKontoList4Typ(TypKontaEnum typKonta) {
+		Query q = createQuery("select k from KontoRolaV k where k.aktywny = '1' and k.rola = :roleName");
+		q.setParameter("roleName", typKonta.getRoleName());
+		@SuppressWarnings("unchecked")
+		List<KontoRolaV> result = q.getResultList();
+		return result;
 	}
 }

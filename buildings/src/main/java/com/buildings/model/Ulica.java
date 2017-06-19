@@ -28,6 +28,7 @@ public class Ulica implements java.io.Serializable {
 	private static final long serialVersionUID = 6054158643347272286L;
 	private Integer idUl;
 	private Miasto miasto;
+	private Integer idMiast;
 	private String nazwaUl;
 	private Set<Firma> firmas = new HashSet<Firma>(0);
 	private Set<Budynek> budyneks = new HashSet<Budynek>(0);
@@ -59,7 +60,16 @@ public class Ulica implements java.io.Serializable {
 	public void setIdUl(Integer idUl) {
 		this.idUl = idUl;
 	}
-
+	
+	@Column(name = "ID_MIAST", insertable = false, updatable = false)
+	public Integer getIdMiast() {
+		return this.idMiast;
+	}
+	
+	public void setIdMiast(Integer idMiast) {
+		this.idMiast = idMiast;
+	}
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_MIAST", nullable = false)
 	public Miasto getMiasto() {

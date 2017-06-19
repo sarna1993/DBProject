@@ -27,6 +27,18 @@
 		<property name="kontoDao" ref="kontoDao" />
 	</bean>
 	
+	<bean id="rentController" class="com.buildings.controllers.RentController">
+		<property name="lokalService" ref="lokalService" />
+		<property name="ulicaDao" ref="ulicaDao"/>
+		<property name="kontoDao" ref="kontoDao" />
+	</bean>
+	
+	<bean id="ajaxController" class="com.buildings.controllers.AjaxController">
+		<property name="ulicaDao" ref="ulicaDao"/>
+		<property name="budynekDao" ref="budynekDao" />
+		<property name="lokalDao" ref="lokalDao" />
+	</bean>
+	
 	<!-- serwisy -->
 	<bean id="baseService" class="com.buildings.services.BaseServiceImpl" />
 	<bean id="budynekService" class="com.buildings.services.BudynekServiceImpl"
@@ -41,6 +53,9 @@
 
 	<bean id="lokalService" class="com.buildings.services.LokalServiceImpl"	parent="baseService">
 		<property name="lokalDao" ref="lokalDao" />
+		<property name="cennikDao" ref="cennikDao"/>
+		<property name="wynajemDao" ref="wynajemDao"/>
+		<property name="lokatorDao" ref="lokatorDao"/>
 	</bean>
 
 	<bean id="kontoService" class="com.buildings.services.KontoServiceImpl"	parent="baseService">
@@ -49,11 +64,14 @@
 	
 	<!-- dao -->
 	<bean id="baseDao" class="com.buildings.dao.BaseDaoImpl" />
-	<bean id="budynekDao" class="com.buildings.dao.BudynekDaoImpl"
-		parent="baseDao" />
+	<bean id="budynekDao" class="com.buildings.dao.BudynekDaoImpl" parent="baseDao" />
 	<bean id="ulicaDao" class="com.buildings.dao.UlicaDaoImpl" parent="baseDao" />
-	<bean id="miastoDao" class="com.buildings.dao.MiastoDaoImpl"
-		parent="baseDao" />
-	<bean id="lokalDao" class="com.buildings.dao.LokalDaoImpl" parent="baseDao" />
+	<bean id="miastoDao" class="com.buildings.dao.MiastoDaoImpl" parent="baseDao" />
+	<bean id="lokalDao" class="com.buildings.dao.LokalDaoImpl" parent="baseDao"/>
 	<bean id="kontoDao" class="com.buildings.dao.KontoDaoImpl" parent="baseDao" />
+	<bean id="cennikDao" class="com.buildings.dao.CennikDaoImpl" parent="baseDao" />
+	<bean id="wynajemDao" class="com.buildings.dao.WynajemDaoImpl" parent="baseDao" />
+	<bean id="lokatorDao" class="com.buildings.dao.LokatorDaoImpl" parent="baseDao">
+		<property name="kontoDao" ref="kontoDao" />
+	</bean>
 </beans>

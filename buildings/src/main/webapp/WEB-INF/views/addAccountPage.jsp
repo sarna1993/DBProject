@@ -99,7 +99,7 @@
             <form:input path="nazwisko" required="required"/>
             <br>
             <form:label path="pesel">Pesel</form:label>
-            <form:input path="pesel" />
+            <form:input path="pesel" required="required"/>
             <br>
             <form:label path="telefon">Telefon</form:label>
             <form:input path="telefon" required="required"/>

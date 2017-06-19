@@ -1,7 +1,6 @@
 package com.buildings.model;
 // Generated Jun 2, 2017 5:05:24 PM by Hibernate Tools 4.3.1.Final
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -27,12 +26,9 @@ public class Lokator implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1435543839289678919L;
-	private BigDecimal idLokat;
+	private Integer idLokat;
+	private Integer idKont;
 	private Konto konto;
-	private String imieLokat;
-	private String nazwLokat;
-	private String pesel;
-	private String nrTelLok;
 	private Set<HistPlat> histPlats = new HashSet<HistPlat>(0);
 	private Set<StanKonta> stanKontas = new HashSet<StanKonta>(0);
 	private Set<Rozliczenie> rozliczenies = new HashSet<Rozliczenie>(0);
@@ -41,19 +37,15 @@ public class Lokator implements java.io.Serializable {
 	public Lokator() {
 	}
 
-	public Lokator(BigDecimal idLokat, Konto konto) {
+	public Lokator(Integer idLokat, Konto konto) {
 		this.idLokat = idLokat;
 		this.konto = konto;
 	}
 
-	public Lokator(BigDecimal idLokat, Konto konto, String imieLokat, String nazwLokat, String pesel, String nrTelLok,
-			Set<HistPlat> histPlats, Set<StanKonta> stanKontas, Set<Rozliczenie> rozliczenies, Set<Wynajem> wynajems) {
+	public Lokator(Integer idLokat, Konto konto, Set<HistPlat> histPlats, Set<StanKonta> stanKontas, 
+			Set<Rozliczenie> rozliczenies, Set<Wynajem> wynajems) {
 		this.idLokat = idLokat;
 		this.konto = konto;
-		this.imieLokat = imieLokat;
-		this.nazwLokat = nazwLokat;
-		this.pesel = pesel;
-		this.nrTelLok = nrTelLok;
 		this.histPlats = histPlats;
 		this.stanKontas = stanKontas;
 		this.rozliczenies = rozliczenies;
@@ -64,14 +56,23 @@ public class Lokator implements java.io.Serializable {
 	@GeneratedValue(generator = "SEQ_LOKATOR", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "SEQ_LOKATOR", sequenceName = "ADMIN.SEQ_LOKATOR", allocationSize=1)
 	@Column(name = "ID_LOKAT", unique = true, nullable = false, precision = 22, scale = 0)
-	public BigDecimal getIdLokat() {
+	public Integer getIdLokat() {
 		return this.idLokat;
 	}
 
-	public void setIdLokat(BigDecimal idLokat) {
+	public void setIdLokat(Integer idLokat) {
 		this.idLokat = idLokat;
 	}
 
+	@Column(name = "ID_KONT", insertable = false, updatable = false)
+	public Integer getIdKont() {
+		return this.idKont;
+	}
+	
+	public void setIdKont(Integer idKont) {
+		this.idKont = idKont;
+	}
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_KONT", nullable = false)
 	public Konto getKonto() {
@@ -80,42 +81,6 @@ public class Lokator implements java.io.Serializable {
 
 	public void setKonto(Konto konto) {
 		this.konto = konto;
-	}
-
-	@Column(name = "IMIE_LOKAT", length = 1020)
-	public String getImieLokat() {
-		return this.imieLokat;
-	}
-
-	public void setImieLokat(String imieLokat) {
-		this.imieLokat = imieLokat;
-	}
-
-	@Column(name = "NAZW_LOKAT", length = 1020)
-	public String getNazwLokat() {
-		return this.nazwLokat;
-	}
-
-	public void setNazwLokat(String nazwLokat) {
-		this.nazwLokat = nazwLokat;
-	}
-
-	@Column(name = "PESEL", length = 1020)
-	public String getPesel() {
-		return this.pesel;
-	}
-
-	public void setPesel(String pesel) {
-		this.pesel = pesel;
-	}
-
-	@Column(name = "NR_TEL_LOK", length = 64)
-	public String getNrTelLok() {
-		return this.nrTelLok;
-	}
-
-	public void setNrTelLok(String nrTelLok) {
-		this.nrTelLok = nrTelLok;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lokator")

@@ -2,16 +2,18 @@ package com.buildings.enums;
 
 public enum TypKontaEnum {
 
-	LOKATOR("LOKATOR"),
-	KSIEGOWA("KSIEGOWA"),
-	TECHNICZNY("TECHNICZNY"),
-	MANAGER("MANAGER"),
-	ADMIN("ADMIN");
+	LOKATOR("LOKATOR", "tenantAuth"),
+	KSIEGOWA("KSIEGOWA", "receptionistAuth"),
+	TECHNICZNY("TECHNICZNY", "technicalAuth"),
+	MANAGER("MANAGER", "managerAuth"),
+	ADMIN("ADMIN", "adminAuth");
 	
 	private String roleName;
+	private String panelName;
 	
-	TypKontaEnum(String roleName) {
+	TypKontaEnum(String roleName, String panelName) {
 		this.roleName = roleName;
+		this.panelName = panelName;
 	}
 
 	public String getRoleName() {
@@ -20,5 +22,13 @@ public enum TypKontaEnum {
 
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
+	}
+	
+	public String getPanelName() {
+		return panelName;
+	}
+
+	public void setPanelName(String panelName) {
+		this.panelName = panelName;
 	}
 }

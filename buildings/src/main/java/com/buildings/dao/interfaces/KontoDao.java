@@ -2,6 +2,7 @@ package com.buildings.dao.interfaces;
 
 import java.util.List;
 
+import com.buildings.enums.TypKontaEnum;
 import com.buildings.model.Konto;
 import com.buildings.model.KontoRolaV;
 
@@ -16,4 +17,6 @@ public interface KontoDao extends BaseDao<Konto> {
 	void aktywujDezaktywujKonto(String login, Boolean enable);
 	
 	Konto getKontoByLogin(String login);
+	
+	List<KontoRolaV> getKontoList4Typ(TypKontaEnum typKonta);
 }

@@ -44,15 +44,6 @@
         transform: translateY(50%);
         /* margin-top: 300px;/* half of #content height*/
     }
-    
-    .zalogowanoJako {
-        text-align: right;
-        color: black;
-        font-family: verdana;
-        font-size: 20px;
-        color: #7f5dff;
-    }
-    
 </style>    
 
     <head>
@@ -61,10 +52,7 @@
     </head>
     
     <body>
-        <div class="zalogowanoJako">
-            Zalogowano jako: MANAGER <br> <br>
-        </div> 
-        
+        <jsp:include page="commonHeader.jsp" />
         <div class="container" align="center">
             <form action="/buildings/rent/price/set">
                 <button>Ustal cennik</button><br>

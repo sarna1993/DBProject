@@ -13,9 +13,21 @@
 		
 	<context:property-placeholder location="classpath:app.properties" />
 	<security:http auto-config="true" use-expressions="true">
-		<security:intercept-url pattern="/admin" access="hasRole('ADMIN')" />
-		<security:intercept-url pattern="/building/add" access="hasRole('ADMIN')" />
+		<!--  LOKATOR -->
+		<security:intercept-url pattern="/panel/tenant" access="hasRole('LOKATOR')" />
+		
+		<!--  KSIEGOWA -->
+		<security:intercept-url pattern="/panel/receptionist" access="hasRole('KSIEGOWA')" />
+		
+		<!--  MANAGER -->
+		<security:intercept-url pattern="/panel/manager" access="hasRole('MANAGER')" />
+		<security:intercept-url pattern="/rent/price/set" access="hasRole('MANAGER')" />
+		
+		<!--  ADMIN -->
+		<security:intercept-url pattern="/panel/admin" access="hasRole('ADMIN')" />
+		<!-- <security:intercept-url pattern="/building/add" access="hasRole('ADMIN')" /> -->
 		<security:intercept-url pattern="/account/manage" access="hasRole('ADMIN')" />
+		
 		<security:form-login  login-page="/login" username-parameter="uname" password-parameter="psw" 
 		authentication-success-handler-ref="authenticationSuccessHandler"
 		default-target-url="/admin" authentication-failure-url="/login?error" />

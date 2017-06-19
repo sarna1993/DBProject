@@ -1,10 +1,6 @@
-<%-- 
-    Document   : lokatorZglos
-    Created on : 2017-05-21, 20:58:16
-    Author     : Klaudia
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <style>
@@ -15,14 +11,6 @@
         background-repeat:no-repeat;
         background-size:100% 100vh;
         margin : 0;
-    }
-    
-    .zalogowanoJako {
-        text-align: right;
-        color: black;
-        font-family: verdana;
-        font-size: 20px;
-        color: #7f5dff;
     }
     
             /*naglowek*/
@@ -74,9 +62,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="zalogowanoJako">
-            Zalogowano jako: LOKATOR <br> <br>
-        </div> 
+		<jsp:include page="commonHeader.jsp" />
         
         <h1><b>ZGŁOSZENIE USTERKI</b></h1>
         

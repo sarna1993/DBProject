@@ -43,14 +43,6 @@
         text-transform: uppercase;
     }
     
-    .zalogowanoJako {
-        text-align: right;
-        color: black;
-        font-family: verdana;
-        font-size: 20px;
-        color: #7f5dff;
-    }
-    
 </style> 
     
     
@@ -59,9 +51,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="zalogowanoJako">
-            Zalogowano jako: LOKATOR <br> <br>
-        </div> 
+		<jsp:include page="commonHeader.jsp" />
         
         <div class="container" align="center">
             <form action="/buildings/defect/report">

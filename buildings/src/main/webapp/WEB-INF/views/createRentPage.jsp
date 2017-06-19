@@ -6,6 +6,8 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <style>
@@ -43,14 +45,6 @@
         color: white;
         text-transform: uppercase;
         font-size: 18px;
-    }
-    
-    .zalogowanoJako {
-        text-align: right;
-        color: black;
-        font-family: verdana;
-        font-size: 20px;
-        color: #7f5dff;
     }
     
             /*naglowek*/
@@ -93,50 +87,152 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript">
+		function getUlica4SelectedMiasto(){
+		var city = $('#city').val();
+		$.ajax({
+			url : '../ajax/getUlica4SelectedMiasto',
+			method : 'POST',
+			datatType : 'json',
+			data : {
+				city : city
+			},
+   		error: function(xhr, response, errorThrown){
+       		alert(errorThrown);
+    	},
+			success : function(data) {
+				var options = '';
+				if (data != null) {
+					options = options + '<option value="-1">Wybierz ulice</option>';
+					$.each(data, function(key, val) {
+						options = options + '<option value="' + key + '">' + val + '</option>';
+					});
+					$('#street').html(options);
+				}
+			}
+		});
+		}
+		</script>
+		<script type="text/javascript">
+		function getBudynek4SelectedUlica(){
+		var street = $('#street').val();
+		$.ajax({
+			url : '../ajax/getBudynek4SelectedUlica',
+			method : 'POST',
+			datatType : 'json',
+			data : {
+				street : street
+			},
+   		error: function(xhr, response, errorThrown){
+       		alert(errorThrown);
+    	},
+			success : function(data) {
+				var options = '';
+				if (data != null) {
+					options = options + '<option value="-1">Wybierz budynek</option>';
+					$.each(data, function(key, val) {
+						options = options + '<option value="' + key + '">' + val + '</option>';
+					});
+					$('#building').html(options);
+				}
+			}
+		});
+		}
+	</script>
+	<script type="text/javascript">
+		function getLokal4SelectedBudynek(){
+		var building = $('#building').val();
+		$.ajax({
+			url : '../ajax/getLokal4SelectedBudynek',
+			method : 'POST',
+			datatType : 'json',
+			data : {
+				building : building
+			},
+   		error: function(xhr, response, errorThrown){
+       		alert(errorThrown);
+    	},
+			success : function(data) {
+				var options = '';
+				if (data != null) {
+					options = options + '<option value="-1">Wybierz lokal</option>';
+					$.each(data, function(key, val) {
+						options = options + '<option value="' + key + '">' + val + '</option>';
+					});
+					$('#place').html(options);
+				}
+			}
+		});
+		}
+	</script>
+	<script type="text/javascript">
+		function getStaraCena4SelectedLokal(){
+		var place = $('#place').val();
+		$.ajax({
+			url : '../ajax/getStaraCena4SelectedLokal',
+			method : 'POST',
+			datatType : 'json',
+			data : {
+				place : place
+			},
+   		error: function(xhr, response, errorThrown){
+       		alert(errorThrown);
+    	},
+			success : function(data) {
+				if (data != null) {
+					$('#curPrice').val(data);
+				}
+			}
+		});
+		}
+	</script>
     </head>
     <body>
-        <div class="zalogowanoJako">
-            Zalogowano jako: BASIA <br> <br>
-       </div>
-        
-       
+		<jsp:include page="commonHeader.jsp" />
         <h1><b>Wyslij do managera</b></h1>
         <br>        
+        <form:form method="post" action="addTenant" commandName="tenantModel">
         <table cellpadding="10">
         <tr>
           <th>Miasto</th>
           <th>Ulica</th>
           <th>Nr budynku</th>
           <th>Nr lokalu</th>
-          <th>Pesel wynajmującego</th>
+          <th>PESEL lokatora</th>
           <th>Od kiedy</th>
           <th>Do kiedy</th>
           <th>Cena</th>
         </tr>
         <tr>
-          <td><select name="nazwa">
-            <option>Miasto 1</option>
-            <option selected="selected">Miasto 2<option>
-            </select></td>
-          <td><select name="nazwa">
-            <option>Tu wpisz pierwszą możliwość</option>
-            <option selected="selected">Tu wpisz drugą możliwość<option>
+		  <td>
+			<select id="city" name="city" onchange="getUlica4SelectedMiasto()">
+				<option value="">....</option>
+				<c:forEach items="${miastoList}" var="miastoList">
+					<option value="${miastoList.idMiast}">${miastoList.nazwaMiast}</option>
+				</c:forEach>
+			</select>
+		  </td>
+          <td>
+          	<select id="street" name="street" onchange="getBudynek4SelectedUlica()">
+				<option value="">....</option>
+			</select>
+            </td> 
+          <td><select id="building" name="building" onchange="getLokal4SelectedBudynek()">
+            <option value="">....</option>
             </select></td> 
-          <td><select name="nazwa">
-            <option>Tu wpisz pierwszą możliwość</option>
-            <option selected="selected">Tu wpisz drugą możliwość<option>
-            </select></td> 
-          <td><select name="nazwa">
-            <option>Tu wpisz pierwszą możliwość</option>
-            <option selected="selected">Tu wpisz drugą możliwość<option>
-            </select></td> 
-          <td><select name="nazwa">
-            <option>Tu wpisz pierwszą możliwość</option>
-            <option selected="selected">Tu wpisz drugą możliwość<option>
-            </select></td>
-          <td><input type="text" name="uname" required></td>
-          <td><input type="text" name="uname" required></td>
-          <td><input type="text" name="uname" required></td>
+          <td><form:select id="place" name="place" path="idLokal" onchange="getStaraCena4SelectedLokal()">
+            <form:option value="">....</form:option>
+            </form:select></td> 
+			<td><form:select id="tenant" name="tenant" path="idLokat" >
+				<form:option value="">....</form:option>
+				<c:forEach items="${lokatorList}" var="lokatorList">
+					<form:option value="${lokatorList.idKont}">${lokatorList.pesel}</form:option>
+				</c:forEach>
+			</form:select></td>
+          <td><form:input type="text" id="dateFrom" name="dateFrom" path="dataUmowyOd"/></td>
+          <td><form:input type="text" id="dateTo" name="dateTo" path="dataUmowyDo"/></td>
+          <td><form:input type="text" id="curPrice" name="curPrice" path="aktualnaCena" disabled="true"/></td>
         </tr>
         
         
@@ -146,7 +242,7 @@
         <button type="submit">Wyslij</button>
         
         </div>
-        
+         </form:form>
     </body>
 </html>
 

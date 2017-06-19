@@ -41,13 +41,40 @@ public class LoginController {
 		return model;
 	}
 
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminAuth", method = RequestMethod.GET)
 	public String adminPage(HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
 		String userData = kontoDao.getImieNazwiskoByLogin(username);
 		request.getSession().setAttribute("userData", userData);
-		return "adminPanelPage";
+		return "redirect:/panel/admin";
+	}
+	
+	@RequestMapping(value = "/managerAuth", method = RequestMethod.GET)
+	public String managerPage(HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		String userData = kontoDao.getImieNazwiskoByLogin(username);
+		request.getSession().setAttribute("userData", userData);
+		return "redirect:/panel/manager";
+	}
+	
+	@RequestMapping(value = "/receptionistAuth", method = RequestMethod.GET)
+	public String receptionistPage(HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		String userData = kontoDao.getImieNazwiskoByLogin(username);
+		request.getSession().setAttribute("userData", userData);
+		return "redirect:/panel/receptionist";
+	}
+	
+	@RequestMapping(value = "/tenantAuth", method = RequestMethod.GET)
+	public String tenantPage(HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		String userData = kontoDao.getImieNazwiskoByLogin(username);
+		request.getSession().setAttribute("userData", userData);
+		return "redirect:/panel/tenant";
 	}
 	
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
