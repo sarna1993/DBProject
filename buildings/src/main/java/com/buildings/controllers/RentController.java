@@ -1,7 +1,6 @@
 package com.buildings.controllers;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.buildings.dao.interfaces.KontoDao;
 import com.buildings.dao.interfaces.UlicaDao;
 import com.buildings.enums.TypKontaEnum;
-import com.buildings.model.Budynek;
 import com.buildings.model.KontoRolaV;
 import com.buildings.model.Miasto;
 import com.buildings.model.WynajemExt;
-import com.buildings.services.interfaces.BudynekService;
 import com.buildings.services.interfaces.LokalService;
-import com.buildings.services.interfaces.UlicaService;
 
 @Controller
 @RequestMapping("/rent")
