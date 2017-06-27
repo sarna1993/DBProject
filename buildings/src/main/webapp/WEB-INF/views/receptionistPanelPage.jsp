@@ -55,13 +55,13 @@
     
     <body>
         <jsp:include page="commonHeader.jsp" />
-        <div class="container" align="center">
-            <form action="/buildings/account/add">
-                <button>Dodaj nowego lokatora</button><br>
-            </form>    
+        <div class="container" align="center">  
             <form action="/buildings/rent/create">    
-                <button>Wyslij wynajem do zatwierdzenia</button>
-            </form>    
+                <button>Wynajmij lokal</button>
+            </form>   
+            <form action="/buildings/payments/book">
+                <button>Ksieguj wplaty</button><br>
+            </form>   
         </div>
         
     </body>

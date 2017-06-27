@@ -18,5 +18,11 @@ public class PaymentController {
 		// model.addAttribute("customers", customerService.getAllCustomers());
 		return "showPaymentsHistoryPage";
 	}
+	
+	@RequestMapping("/payments/book")
+	public String bookPayments(Model model) {
+		// model.addAttribute("customers", customerService.getAllCustomers());
+		return "bookPaymentsPage";
+	}
 
 }

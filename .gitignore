@@ -72,3 +72,4 @@ buildings/.project
 buildings/.settings/org.eclipse.jdt.core.prefs
 buildings/.settings/org.eclipse.wst.common.project.facet.core.xml
 buildings/.settings/org.hibernate.eclipse.console.prefs
+buildings/target/**
