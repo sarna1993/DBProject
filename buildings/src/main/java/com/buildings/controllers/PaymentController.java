@@ -44,4 +44,14 @@ public class PaymentController {
 		model.addAttribute("payments", rozliczeniaDao.getRozliczenieList(lokator.getIdLokat()));
 		return "showPaymentsHistoryPage";
 	}
+<<<<<<< HEAD
+=======
+	
+	@RequestMapping("/payments/book")
+	public String bookPayments(Model model) {
+		// model.addAttribute("customers", customerService.getAllCustomers());
+		return "bookPaymentsPage";
+	}
+
+>>>>>>> 99d1a867bcbca124bd2e5c545fab2d68eaf8ab1f
 }
