@@ -27,6 +27,10 @@
 		<property name="kontoDao" ref="kontoDao" />
 	</bean>
 	
+	<bean id="defectController" class="com.buildings.controllers.DefectController">
+		<property name="usterkaService" ref="usterkaService" />
+	</bean>
+	
 	<bean id="rentController" class="com.buildings.controllers.RentController">
 		<property name="lokalService" ref="lokalService" />
 		<property name="ulicaDao" ref="ulicaDao"/>
@@ -37,6 +41,12 @@
 		<property name="ulicaDao" ref="ulicaDao"/>
 		<property name="budynekDao" ref="budynekDao" />
 		<property name="lokalDao" ref="lokalDao" />
+	</bean>
+	
+	<bean id="paymentController" class="com.buildings.controllers.PaymentController">
+		<property name="histPlatDao" ref="histPlatDao"/>
+		<property name="rozliczeniaDao" ref="rozliczeniaDao" />
+		<property name="lokatorDao" ref="lokatorDao" />
 	</bean>
 	
 	<!-- serwisy -->
@@ -62,6 +72,10 @@
 		<property name="kontoDao" ref="kontoDao" />
 	</bean>
 	
+	<bean id="usterkaService" class="com.buildings.services.UsterkaServiceImpl" parent="baseService">
+		<property name="usterkaDao" ref="usterkaDao" />
+	</bean>
+	
 	<!-- dao -->
 	<bean id="baseDao" class="com.buildings.dao.BaseDaoImpl" />
 	<bean id="budynekDao" class="com.buildings.dao.BudynekDaoImpl" parent="baseDao" />
@@ -71,6 +85,9 @@
 	<bean id="kontoDao" class="com.buildings.dao.KontoDaoImpl" parent="baseDao" />
 	<bean id="cennikDao" class="com.buildings.dao.CennikDaoImpl" parent="baseDao" />
 	<bean id="wynajemDao" class="com.buildings.dao.WynajemDaoImpl" parent="baseDao" />
+	<bean id="usterkaDao" class="com.buildings.dao.UsterkaDaoImpl" parent="baseDao" />
+	<bean id="histPlatDao" class="com.buildings.dao.HistPlatDaoImpl" parent="baseDao" />
+	<bean id="rozliczeniaDao" class="com.buildings.dao.RozliczeniaDaoImpl" parent="baseDao" />
 	<bean id="lokatorDao" class="com.buildings.dao.LokatorDaoImpl" parent="baseDao">
 		<property name="kontoDao" ref="kontoDao" />
 	</bean>

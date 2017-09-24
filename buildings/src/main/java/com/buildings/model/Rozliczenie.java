@@ -28,12 +28,13 @@ public class Rozliczenie implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 132717687430566977L;
 	private BigDecimal idPlat;
+	private Integer idLokat;
 	private Lokator lokator;
 	private Okres okres;
 	private Double saldoMies;
 	private Date data;
 	private Date terminPlat;
-
+	
 	public Rozliczenie() {
 	}
 
@@ -64,6 +65,15 @@ public class Rozliczenie implements java.io.Serializable {
 		this.idPlat = idPlat;
 	}
 
+	@Column(name = "ID_LOKAT", insertable = false, updatable = false)
+	public Integer getIdLokat() {
+		return this.idLokat;
+	}
+
+	public void setIdLokat(Integer idLokat) {
+		this.idLokat = idLokat;
+	}
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_LOKAT", nullable = false)
 	public Lokator getLokator() {

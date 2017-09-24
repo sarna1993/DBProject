@@ -67,15 +67,17 @@
         <h1><b>ZGŁOSZENIE USTERKI</b></h1>
         
         <div class="container">
-            <label>Czy to usterka lokalna?</label>
-            <input type="checkbox" name="uname" required>
+        <form:form method="post" action="addDefect" commandName="ustModel">
+        	<form:label path="lokalna">Czy to usterka lokalna?</form:label>
+            <form:checkbox path="lokalna" />
             <br> <br>
-            <label>Opis usterki</label>
+            <form:label path="opis">Opis usterki</form:label>
             <br>
-            <input type="text" size="100" class="field" name="uname" required >
+            <td><form:input path="opis" size="100"/></td>
             <br>
         
             <button type="submit">Zglos</button>
+            </form:form>
         </div>
         
     </body>

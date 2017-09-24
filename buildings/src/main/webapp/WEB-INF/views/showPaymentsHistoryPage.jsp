@@ -1,10 +1,6 @@
-<%-- 
-    Document   : lokatorWplaty
-    Created on : 2017-05-21, 20:57:40
-    Author     : Klaudia
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <style>
@@ -60,48 +56,35 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pokaż rozliczenia</title>
     </head>
-    <body>
-        <div class="zalogowanoJako">
-            Zalogowano jako: LOKATOR <br> <br>
-        </div> 
-        
-        <h1><b>ZESTAWIENIE DOKONANYCH WPLAT</b></h1>
-        <br>
-        <!-- TABELA !!!-->
-        <table cellpadding="10">
-        <tr>
-          <th>Kolumna 1</th>
-          <th>Kolumna 2</th>
-          <th>Kolumna 3</th>
-          <th>Kolumna 4</th>
-        </tr>
-        <tr>
-          <td>w1</td>
-          <td>w1</td>
-          <td>w1</td>
-          <td>w1</td>
-        </tr>
-        <tr>
-          <td>w2</td>
-          <td>w2</td>
-          <td>w2</td>
-          <td>w2</td>
-        </tr>
-        <tr>
-          <td>w3</td>
-          <td>w3</td>
-          <td>w3</td>
-          <td>w3</td>
-        </tr>
-        <tr>
-          <td>w4</td>
-          <td>w4</td>
-          <td>w4</td>
-          <td>w4</td>
-        </tr>
-      </table>
-        
-    </body>
+ <body>
+<jsp:include page="commonHeader.jsp" />
+    <div class="container">
+        <div class="panel panel-default">
+              <!-- Default panel contents -->
+            <div class="panel-heading"><span class="lead">Miesięczne zestawienie</span></div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Data wystawienia</th>
+                        <th>Termin płatności</th>
+                        <th>Saldo miesięczne</th>
+                        <th>Obciążenie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${payments}" var="p">
+                    <tr>
+                        <td>${p.data}</td>
+                        <td>${p.terminPlat}</td>
+                        <td>${p.saldoMies}</td>
+                        <td>1500</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
 </html>

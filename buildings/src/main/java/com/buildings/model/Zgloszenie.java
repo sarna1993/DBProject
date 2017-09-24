@@ -24,13 +24,15 @@ public class Zgloszenie implements java.io.Serializable {
 	private static final long serialVersionUID = 692692172327843667L;
 	private ZgloszenieId id;
 	private Wynajem wynajem;
-
+	private Usterka usterka;
+	
 	public Zgloszenie() {
 	}
 
-	public Zgloszenie(ZgloszenieId id, Wynajem wynajem) {
+	public Zgloszenie(ZgloszenieId id, Wynajem wynajem, Usterka usterka) {
 		this.id = id;
 		this.wynajem = wynajem;
+		this.usterka = usterka;
 	}
 
 	@EmbeddedId
@@ -54,6 +56,16 @@ public class Zgloszenie implements java.io.Serializable {
 
 	public void setWynajem(Wynajem wynajem) {
 		this.wynajem = wynajem;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_USTERKA", nullable = false, insertable = false, updatable = false)
+	public Usterka getUsterka() {
+		return usterka;
+	}
+
+	public void setUsterka(Usterka usterka) {
+		this.usterka = usterka;
 	}
 
 }

@@ -6,4 +6,5 @@ public interface LokatorDao extends BaseDao<Lokator> {
 
 	Integer createIfNotExistsLokator(Integer idKont);
 
+	Lokator getLokatorByUsername(String username);
 }
