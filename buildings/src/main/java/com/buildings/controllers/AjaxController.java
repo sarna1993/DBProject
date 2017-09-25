@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,10 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.buildings.dao.interfaces.BudynekDao;
 import com.buildings.dao.interfaces.LokalDao;
+import com.buildings.dao.interfaces.LokatorDao;
 import com.buildings.dao.interfaces.UlicaDao;
 import com.buildings.model.Budynek;
 import com.buildings.model.Lokal;
+import com.buildings.model.Lokator;
 import com.buildings.model.Ulica;
+import com.buildings.model.Wynajem;
 
 @RestController
 @RequestMapping("/ajax")
@@ -26,6 +30,8 @@ public class AjaxController {
 	private BudynekDao budynekDao;
 	
 	private LokalDao lokalDao;
+	@Autowired
+	private LokatorDao lokatorDao;
 	
 	@RequestMapping(value = "getUlica4SelectedMiasto", method = RequestMethod.POST)
 	public @ResponseBody Map<Integer, String> getUlica4SelectedMiasto(@RequestParam(value = "city", required = true) String city) {
@@ -70,6 +76,16 @@ public class AjaxController {
 			cena = new Double(0);
 		
 		return cena;
+	}
+	
+	@RequestMapping(value = "getObciazenie4SelectedLokator", method = RequestMethod.POST)
+	public @ResponseBody Double getObciazenie4SelectedLokator(@RequestParam(value = "tenant", required = true) String tenant) {
+		/*Lokator lokator = lokatorDao.getLokatorByIdKont(tenant);
+		double obciazenie = 0.0;
+		for(Wynajem wynajem: lokator.getWynajems()){
+			obciazenie += wynajem.getCenaWynaj();
+		}*/
+		return 10.0;
 	}
 
 	public void setUlicaDao(UlicaDao ulicaDao) {

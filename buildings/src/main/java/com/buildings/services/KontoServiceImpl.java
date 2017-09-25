@@ -49,4 +49,9 @@ public class KontoServiceImpl implements KontoService {
 		kontoDao.remove(konto);
 		
 	}
+
+	@Override
+	public List<KontoRolaV> getKontoList4Typ(TypKontaEnum typKonta) {
+		return kontoDao.getKontoList4Typ(typKonta);
+	}
 }

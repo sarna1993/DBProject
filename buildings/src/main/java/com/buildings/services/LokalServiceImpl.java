@@ -8,8 +8,10 @@ import java.util.Map;
 import org.springframework.util.Assert;
 
 import com.buildings.dao.interfaces.CennikDao;
+import com.buildings.dao.interfaces.KontoDao;
 import com.buildings.dao.interfaces.LokalDao;
 import com.buildings.dao.interfaces.LokatorDao;
+import com.buildings.dao.interfaces.StanKontaDao;
 import com.buildings.dao.interfaces.WynajemDao;
 import com.buildings.model.Cennik;
 import com.buildings.model.Lokal;
@@ -93,5 +95,7 @@ public class LokalServiceImpl implements LokalService {
 		newWynajem.setLokator(lokator);
 		newWynajem.setIdLokal(wynajem.getIdLokal());
 		wynajemDao.persist(newWynajem);
+		
+		
 	}
 }

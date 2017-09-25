@@ -12,6 +12,7 @@
 </head>
     
     <body>
+<<<<<<< HEAD
     	<jsp:include page="commonHeader.jsp" />
 		<div class="generic-container" align="center">
             <form action="/buildings/rent/create">    
@@ -20,6 +21,19 @@
             <form action="/buildings/payments/book">
                 <button>Ksieguj wplaty</button><br>
             </form>       
+=======
+        <jsp:include page="commonHeader.jsp" />
+        <div class="container" align="center">
+            <form action="/buildings/rent/create">    
+                <button>Wyslij wynajem do zatwierdzenia</button>
+            </form>    
+            <form action="/buildings/payments/book">
+                <button>Ksieguj wplaty</button><br>
+            </form>    
+            <form action="/buildings/charges/monthly/create">
+                <button>Wykonaj rozliczenie</button><br>
+            </form>    
+>>>>>>> a02e105ce8a1608e8506da27a5dedf3526842431
         </div>
         
     </body>

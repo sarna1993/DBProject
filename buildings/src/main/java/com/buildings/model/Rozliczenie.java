@@ -32,10 +32,13 @@ public class Rozliczenie implements java.io.Serializable {
 	private Lokator lokator;
 	private Okres okres;
 	private Double saldoMies;
+	private Double obciazenie;
 	private Date data;
 	private Date terminPlat;
 	
 	public Rozliczenie() {
+		this.okres = new Okres();
+		this.okres.setIdOkr(null);
 	}
 
 	public Rozliczenie(BigDecimal idPlat, Lokator lokator, Okres okres) {
@@ -98,9 +101,18 @@ public class Rozliczenie implements java.io.Serializable {
 	public Double getSaldoMies() {
 		return this.saldoMies;
 	}
+	
+	@Column(name = "OBCIAZENIE", precision = 2, scale = 0)
+	public Double getObciazenie() {
+		return this.obciazenie;
+	}
 
 	public void setSaldoMies(Double saldoMies) {
 		this.saldoMies = saldoMies;
+	}
+	
+	public void setObciazenie(Double obciazenie) {
+		this.obciazenie = obciazenie;
 	}
 
 	@Temporal(TemporalType.DATE)

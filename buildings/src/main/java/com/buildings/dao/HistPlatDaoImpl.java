@@ -20,4 +20,9 @@ public class HistPlatDaoImpl extends BaseDaoImpl<HistPlat> implements HistPlatDa
 		return (List<HistPlat>) cr.list();
 	}
 
+	@Override
+	public HistPlat getNewHistPlat() {
+		return new HistPlat();
+	}
+
 }
