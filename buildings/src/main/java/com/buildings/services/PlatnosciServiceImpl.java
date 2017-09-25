@@ -7,6 +7,7 @@ import org.springframework.util.Assert;
 
 import com.buildings.dao.interfaces.HistPlatDao;
 import com.buildings.dao.interfaces.LokatorDao;
+import com.buildings.dao.interfaces.OkresDao;
 import com.buildings.dao.interfaces.RozliczeniaDao;
 import com.buildings.model.Cennik;
 import com.buildings.model.HistPlat;
@@ -26,6 +27,8 @@ public class PlatnosciServiceImpl implements PlatnosciService {
 	private HistPlatDao histPlatDao;
 	@Autowired
 	private RozliczeniaDao rozliczeniaDao;
+	@Autowired
+	private OkresDao okresDao;
 	
 	@Override
 	public void bookNewPayment(HistPlat platnosc) {
@@ -34,7 +37,6 @@ public class PlatnosciServiceImpl implements PlatnosciService {
 		Assert.notNull(idLokat);
 		Lokator lokator = lokatorDao.find(Lokator.class, idLokat);
 		Assert.notNull(lokator);
-		
 		platnosc.setIdPlat(null);
 		platnosc.setLokator(lokator);
 		platnosc.setStanPo(1500.0);
@@ -46,6 +48,10 @@ public class PlatnosciServiceImpl implements PlatnosciService {
 	public void createMonthlyCharges(Rozliczenie rozliczenie) {
 		rozliczenie.setIdPlat(null);
 		rozliczenie.setSaldoMies(-rozliczenie.getObciazenie());
+		Integer idLokat = lokatorDao.getLokatorByIdKont(rozliczenie.getIdLokat());
+		Lokator lokator = lokatorDao.find(Lokator.class, idLokat);
+		rozliczenie.setLokator(lokator);
+		okresDao.persist(rozliczenie.getOkres());
 		rozliczeniaDao.persist(rozliczenie);
 	}
 

@@ -104,7 +104,7 @@ public class Rozliczenie implements java.io.Serializable {
 	
 	@Column(name = "OBCIAZENIE", precision = 2, scale = 0)
 	public Double getObciazenie() {
-		return this.saldoMies;
+		return this.obciazenie;
 	}
 
 	public void setSaldoMies(Double saldoMies) {

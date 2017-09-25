@@ -97,4 +97,5 @@
 	<bean id="lokatorDao" class="com.buildings.dao.LokatorDaoImpl" parent="baseDao">
 		<property name="kontoDao" ref="kontoDao" />
 	</bean>
+	<bean id="okresDao" class="com.buildings.dao.OkresDaoImpl" parent="baseDao"/>
 </beans>

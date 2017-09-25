@@ -132,14 +132,14 @@ input[type=text] {
 			<tr>
 				<td><form:select id="tenant" name="tenant" path="idLokat" onchange="getObciazenie4SelectedLokator()">
 						<form:option value="">....</form:option>
-						<c:forEach items="${lokatorList}" var="lokatorList">
+						<c:forEach items="${lokatorList}" var="lokatorList" >
 							<form:option value="${lokatorList.idKont}">${lokatorList.pesel}</form:option>
 						</c:forEach>
 					</form:select></td>
 				<td><form:select id="month" name="month" path="okres.mies">
 						<form:option value="">....</form:option>
-						<c:forEach items="${monthList}" var="monthList">
-							<form:option value="${monthList}">${monthList}</form:option>
+						<c:forEach items="${monthList}" var="monthList" varStatus="loop">
+							<form:option value="${loop.index + 1}">${monthList}</form:option>
 						</c:forEach>
 					</form:select></td>
 				<td><form:select id="year" name="year" path="okres.rok">
@@ -152,7 +152,7 @@ input[type=text] {
 				<td><form:input type="text" id="deadline" name="deadline"
 						path="terminPlat" /></td>
 				<td><form:input type="text" id="price" name="price"
-						path="obciazenie" disabled="true" /></td>
+						path="obciazenie"  /></td>
 			</tr>
 
 

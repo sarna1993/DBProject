@@ -92,7 +92,7 @@ public class PaymentController {
 	
 	@RequestMapping(value = "/charges/monthly/createNewMonthlyCharges", method = RequestMethod.POST)
 	public String createNewMonthlyCharges(@ModelAttribute("SpringWeb") Rozliczenie rozliczenie, ModelMap model) {
-		System.out.println("asdf");
+		platnosciService.createMonthlyCharges(rozliczenie);
 		return "redirect:/charges/monthly/create";
 	}
 

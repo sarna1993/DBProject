@@ -18,10 +18,6 @@ public class OkresServiceImpl extends BaseServiceImpl implements OkresService {
 	@Override
 	public List<String> getMonths() {
 		List<String> months = new ArrayList<String>();
-		months.add("wrzesien");
-		months.add("pazdziernik");
-		months.add("listopad");
-		months.add("grudzien");
 		months.add("styczen");
 		months.add("luty");
 		months.add("marzec");
@@ -30,6 +26,10 @@ public class OkresServiceImpl extends BaseServiceImpl implements OkresService {
 		months.add("czerwiec");
 		months.add("lipiec");
 		months.add("sierpien");
+		months.add("wrzesien");
+		months.add("pazdziernik");
+		months.add("listopad");
+		months.add("grudzien");
 		return months;
 	}
 
