@@ -1,84 +1,51 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<style>
-    body {                                                              
-        position: relative;
-        background-image: url(http://azuretwilight.org/images/themes/azure_twilight/background_space_purple.png);
-        /* background-image: url(http://www.intrawallpaper.com/static/images/New-York-City-Desktop-Wallpaper.jpg); */
-        background-repeat:no-repeat;
-        background-size:100% 100vh;
-        margin : 0;
-    }
-    
-            /*naglowek*/
-    h1 {
-        text-align: center;
-        color: #7f5dff;
-        font-family: verdana;
-        font-weight: bold;
-        font-size: 40px;
-        letter-spacing: 3px;
-    } 
-    
-    .container {                                
-        text-align: center;
-        width: 100%;
-        line-height: 1.0;  
-        padding: 16px;
-        position: absolute;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        color: white;
-        text-transform: uppercase;
-        font-size: 18px;
-    }
-    
-    .field{
-        height:300px;
-    }
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Zgłoszenie usterki</title>
+	<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>
+	<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
+</head>
 
-        /*button*/
-    button {
-        background-color: #7f5dff;
-        color: white;
-        padding: 10px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 20%;
-        font-family: verdana;
-        font-size: 15px;
-    }
-    
-</style> 
-
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-		<jsp:include page="commonHeader.jsp" />
+<body>
+	<div class="generic-container">
+	<jsp:include page="commonHeader.jsp" />
         
-        <h1><b>ZGŁOSZENIE USTERKI</b></h1>
-        
-        <div class="container">
-        <form:form method="post" action="addDefect" commandName="ustModel">
-        	<form:label path="lokalna">Czy to usterka lokalna?</form:label>
-            <form:checkbox path="lokalna" />
-            <br> <br>
-            <form:label path="opis">Opis usterki</form:label>
-            <br>
-            <td><form:input path="opis" size="100"/></td>
-            <br>
-        
-            <button type="submit">Zglos</button>
-            </form:form>
-        </div>
-        
-    </body>
+		<div class="well lead">Zgłoszenie usterki</div>
+		<form:form method="post" action="addDefect" commandName="ustModel" class="form-horizontal">
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="lokalna">Czy usterka lokalna?</label>
+					<div class="col-md-7">
+						<form:checkbox path="lokalna" id="lokalna" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="lokalna" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="opis">Opis usterki</label>
+					<div class="col-md-7">
+						<form:input type="text" path="opis" id="opis" size="100" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="opis" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-actions floatRight">
+					<input type="submit" value="Zgłoś" class="btn btn-primary btn-sm"/>
+				</div>
+			</div>
+		</form:form>
+</div>
+</body>
 </html>

@@ -1,164 +1,163 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="ISO-8859-1"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
-<style>
-    body {                                                              
-        background-image: url(http://www.photos-public-domain.com/wp-content/uploads/2011/02/purple-leather-texture.jpg);
-        background-repeat:no-repeat;
-        background-size:100% 100vh;
-        background-position: right top;
-        background-attachment: fixed;
-        background-color: black;
-    }
+<head>
+	<meta http-equiv="Content-Type" content="text/html; ccharset=UTF-8"">
+	<title>Dodawanie budynkow/lokali</title>
+	<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>
+	<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
+</head>
     
-    /*button*/
-    /*button*/
-    button {
-        background-color: #7f5dff;
-        color: white;
-        padding: 10px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 50%;
-        font-family: verdana;
-        font-size: 15px;
-    }
-    
-    .container {                                
-        text-align: center;
-        width: 20%; 
-        padding: 16px;
-        position: absolute;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        color: white;
-        text-transform: uppercase;
-        font-size: 18px;
-    }
-    
-        /*naglowek*/
-    h1 {
-        text-align: center;
-        color: #7f5dff;
-        font-family: verdana;
-        font-weight: bold;
-        font-size: 40px;
-        letter-spacing: 3px;
-    } 
-    
-     input[type=text]{
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
-    
-    
-</style> 
-
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    
-    <body>
- 		<jsp:include page="commonHeader.jsp" />
+<body>
+	<div class="generic-container">
+	<jsp:include page="commonHeader.jsp" />
         
-        <h1><b>DODAWANIE BUDYNKOW I LOKALI</b></h1>
-        
-        <div class="container">
-		<form:form method="post" action="addBuilding" commandName="budModel">
- 		<table>
- 		<tr>
- 		<td>Ulica</td>
- 		</tr>
- 		<tr>
- 		<td>
- 		<form:select path="idUlica">
- 		<form:option value="" label="...." />
- 		<form:options items="${ulicaList}"/>
- 		</form:select>
- 		</td>
- 		</tr>
- 		<tr>
-        <td><form:label path="nrBud">Numer budynku</form:label></td>
-        </tr>
-        <tr>
-        <td><form:input path="nrBud" /></td>
- 		</tr>
- 		<tr>
-        <td><form:label path="powBud">Powierzchnia budynku</form:label></td>
-        </tr>
-        <tr>
-        <td><form:input path="powBud" /></td>
-      	</tr>
-      	 <tr>
-        <td><form:label path="czyWinda">Czy jest winda</form:label></td>
-        </tr>
-        <tr>
-        <td><form:checkbox path="czyWinda" /></td>
-      	</tr>
-      	<tr>
-        <td><form:label path="liczbaPieter">Liczba pieter</form:label></td>
-        </tr>
-        <tr>
-        <td><form:input path="liczbaPieter" /></td>
-      	</tr>
- 		</table>
- 		<button type="submit">Dodaj budynek</button> 
- 		</form:form>
-		<br>
-		<hr>
-		<br>
-            <!-- wybor z tabeli DODAC !!!-->
-		<form:form method="post" action="addPlace" commandName="lokModel">
-		<table style="margin-left:50px;">
-		<tr>
- 		<td>Budynek</td>
- 		</tr>
- 		<tr>
- 		<td>
- 		<form:select path="idBud">
- 		<form:option value="" label="...." />
- 		<form:options items="${budynekList}"/>
- 		</form:select>
- 		</td>
- 		</tr>
- 		<tr> 
- 		<td><form:label path="nrLok">Numer lokalu</form:label></td>
-		</tr>
-		<tr>
-		<td><form:input path="nrLok" /></td>
-		</tr>
-		<tr>
-		<td><form:label path="powLok">Powierzchnia lokalu</form:label></td>
-		</tr>
-		<tr>
-		<td><form:input path="powLok" /></td>
-		</tr>
-		<tr>
-		<td><form:label path="isBalkon">Czy jest balkon</form:label></td>
-		</tr>
-		<tr>
-		<td><form:checkbox path="isBalkon" /></td>
-		</tr>
-		<tr>
-		<td><form:label path="liczbaPom">Liczba pomieszczen</form:label></td>
-		</tr>
-		<tr>
-		<td><form:input path="liczbaPom" /></td>
-		</tr>
- 		</table>
- 		<button type="submit">Dodaj lokal</button>
- 		</form:form>
-        </div>
-    </body>
+		<div class="well lead">Rejestracja nowych budynkow/lokali</div>
+		<form:form method="post" action="addBuilding" commandName="budModel" class="form-horizontal">
+		
+			<div class="row">
+			<div class="form-group col-md-12">
+				<label class="col-md-3 control-lable" for="idUlica">Ulica</label>
+				<div class="col-md-7">
+					<form:select path="idUlica">
+					<form:option value="" label="...." />
+					<form:options items="${ulicaList}"/>
+					</form:select>
+					<div class="has-error">
+						<form:errors path="idUlica" class="help-inline"/>
+					</div>
+				</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="nrBud">Numer budynku</label>
+					<div class="col-md-7">
+						<form:input type="text" path="nrBud" id="nrBud" class="form-control input-sm"/>
+						<div class="has-error">
+							<form:errors path="nrBud" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="powBud">Powierzchnia budynku</label>
+					<div class="col-md-7">
+						<form:input type="text" path="powBud" id="powBud" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="powBud" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="czyWinda">Czy jest winda?</label>
+					<div class="col-md-7">
+						<form:checkbox path="czyWinda" id="czyWinda" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="czyWinda" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="liczbaPieter">Liczba pieter</label>
+					<div class="col-md-7">
+						<form:input type="text" path="liczbaPieter" id="liczbaPieter" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="liczbaPieter" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-actions floatRight">
+					<input type="submit" value="Dodaj budynek" class="btn btn-primary btn-sm"/>
+				</div>
+			</div>
+		</form:form>
+			
+		<form:form method="post" action="addPlace" commandName="lokModel" class="form-horizontal">
+			<div class="row">
+			<div class="form-group col-md-12">
+				<label class="col-md-3 control-lable" for="idBud">Budynek</label>
+				<div class="col-md-7">
+					<form:select path="idBud">
+					<form:option value="" label="...." />
+					<form:options items="${budynekList}"/>
+					</form:select>
+					<div class="has-error">
+						<form:errors path="idBud" class="help-inline"/>
+					</div>
+				</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="nrLok">Numer lokalu</label>
+					<div class="col-md-7">
+						<form:input type="text" path="nrLok" id="nrLok" class="form-control input-sm"/>
+						<div class="has-error">
+							<form:errors path="nrLok" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="powLok">Powierzchnia lokalu</label>
+					<div class="col-md-7">
+						<form:input type="text" path="powLok" id="powLok" class="form-control input-sm"/>
+						<div class="has-error">
+							<form:errors path="powLok" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="isBalkon">Czy jest balkon?</label>
+					<div class="col-md-7">
+						<form:checkbox path="isBalkon" id="isBalkon" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="isBalkon" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="liczbaPom">Liczba pomieszczen</label>
+					<div class="col-md-7">
+						<form:input type="text" path="liczbaPom" id="liczbaPom" class="form-control input-sm"/>
+						<div class="has-error">
+							<form:errors path="liczbaPom" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-actions floatRight">
+					<input type="submit" value="Dodaj lokal" class="btn btn-primary btn-sm"/>
+				</div>
+			</div>
+		</form:form>
+	</div>
+</body>
     
 </html>

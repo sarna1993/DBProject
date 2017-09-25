@@ -1,116 +1,128 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
-<style>
-    body {                                                              
-        background-image: url(http://www.photos-public-domain.com/wp-content/uploads/2011/02/purple-leather-texture.jpg);
-        background-repeat:no-repeat;
-        background-size:100% 100vh;
-        background-position: right top;
-        background-attachment: fixed;
-        background-color: black;
-    }
-    /*button*/
-    button {
-        background-color: #7f5dff;
-        color: white;
-        padding: 10px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 50%;
-        font-family: verdana;
-        font-size: 15px;
-    }
-    
-    .container {                                
-        text-align: center;
-        width: 20%;
-        line-height: 1.0;  
-        padding: 16px;
-        position: absolute;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        color: white;
-        text-transform: uppercase;
-        font-size: 18px;
-    }
-    
-            /*naglowek*/
-    h1 {
-        text-align: center;
-        color: #7f5dff;
-        font-family: verdana;
-        font-weight: bold;
-        font-size: 40px;
-        letter-spacing: 3px;
-    } 
-    
-
-    
-    body {
-        background-color: pink;
-    }
-    
-    input[type=text]{
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
-    
-    
-</style>      
-    
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Rejestracja</title>
+	<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>
+	<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
+</head>
     <body>
+ 	<div class="generic-container">
         <jsp:include page="commonHeader.jsp" />
         
-        <h1><b>DODAWANIE KONTA PRACOWNIKA/LOKATORA</b></h1>
-       
-        <div class="container">
-        <form:form method="post" action="addAccount" commandName="kontoModel">
-            <label>Typ konta</label> 
-            <br>
-            <form:select path="typKonta">
- 			<form:option value="" label="...." />
- 			<form:options items="${rolesList}"/>
- 			</form:select>
-            <br><br>
-            <form:label path="login">Login</form:label>
-            <form:input path="login" required="required"/>
-            <br>
-            <form:label path="passw">Haslo</form:label>
-            <form:input type="password" path="passw" required="required"/>
-            <br>
-            <form:label path="imie">Imie</form:label>
-            <form:input path="imie" required="required"/>
-            <br>
-            <form:label path="nazwisko">Nazwisko</form:label>
-            <form:input path="nazwisko" required="required"/>
-            <br>
-            <form:label path="pesel">Pesel</form:label>
-            <form:input path="pesel" required="required"/>
-            <br>
-            <form:label path="telefon">Telefon</form:label>
-            <form:input path="telefon" required="required"/>
-            <br>
-            <form:label path="email">Email</form:label>
-            <form:input path="email" required="required"/>
-            <br>
-       
-        <button type="submit">Dodaj osobe</button>
-        </form:form>
-        </div>
-        
-    </body>
+		<div class="well lead">Rejestracja konta nowego uzytkownika</div>
+		<form:form method="POST" action="addAccount" commandName="kontoModel" class="form-horizontal">
+			
+			<div class="row">
+			<div class="form-group col-md-12">
+				<label class="col-md-3 control-lable" for="typKonta">Typ Konta</label>
+				<div class="col-md-7">
+            		<form:select path="typKonta">
+ 					<form:option value="" label="...." />
+ 					<form:options items="${rolesList}"/>
+					</form:select>
+					<div class="has-error">
+						<form:errors path="typKonta" class="help-inline"/>
+					</div>
+				</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="login">Login</label>
+					<div class="col-md-7">
+						<form:input type="text" path="login" id="login" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="login" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="passw">Haslo</label>
+					<div class="col-md-7">
+						<form:input type="password" path="passw" id="passw" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="passw" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="imie">Imie</label>
+					<div class="col-md-7">
+						<form:input type="text" path="imie" id="imie" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="imie" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="nazwisko">Nazwisko</label>
+					<div class="col-md-7">
+						<form:input type="text" path="nazwisko" id="nazwisko" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="nazwisko" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="pesel">Pesel</label>
+					<div class="col-md-7">
+						<form:input type="text" path="pesel" id="pesel" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="pesel" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="telefon">Telefon</label>
+					<div class="col-md-7">
+						<form:input type="text" path="telefon" id="telefon" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="telefon" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="col-md-3 control-lable" for="email">Email</label>
+					<div class="col-md-7">
+						<form:input type="text" path="email" id="email" class="form-control input-sm" />
+						<div class="has-error">
+							<form:errors path="email" class="help-inline"/>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+			<div class="row">
+				<div class="form-actions floatRight">
+					<input type="submit" value="Dodaj osobe" class="btn btn-primary btn-sm"/>
+				</div>
+			</div>
+		</form:form>
+	</div>
+</body>
 </html>

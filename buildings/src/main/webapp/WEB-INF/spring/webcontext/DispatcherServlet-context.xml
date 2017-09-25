@@ -15,7 +15,8 @@
 	<context:component-scan base-package="com.buildings" />
     <context:property-placeholder location="classpath:app.properties" />
 	<mvc:resources location="/resources/" mapping="/resource/**" />
-
+	<mvc:resources location="/static/" mapping="/static/**" />
+	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
