@@ -40,12 +40,32 @@ public class LokatorDaoImpl extends BaseDaoImpl<Lokator> implements LokatorDao {
 	}
 	
 	@Override
+	public Integer getLokatorByIdKont(Integer idKont) {
+		Criteria cr = createCriteria(Lokator.class);
+		cr.add(Restrictions.eq("idKont", idKont));
+		@SuppressWarnings("unchecked")
+		List<Lokator> result = cr.list();
+		
+		if(result != null && !result.isEmpty()) {
+			return result.get(0).getIdLokat();
+		}
+
+		return null;
+	}
+	
+	@Override
 	public Lokator getLokatorByUsername(String username) {
 		Assert.notNull(username);
 		Query q = createQuery("select l from Lokator l, Konto k "
 				+ "where k.idKont = l.idKont and k.login = :loginParam");
 		q.setParameter("loginParam", username);
 		return (Lokator) q.getSingleResult();
+	}
+
+	@Override
+	public Lokator getLokatorByIdKont(int idKont) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

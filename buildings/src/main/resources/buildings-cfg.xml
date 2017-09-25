@@ -76,6 +76,12 @@
 		<property name="usterkaDao" ref="usterkaDao" />
 	</bean>
 	
+	<bean id="platnosciService" class="com.buildings.services.PlatnosciServiceImpl">
+	</bean>
+	
+	<bean id="okresService" class="com.buildings.services.OkresServiceImpl">
+	</bean>
+	
 	<!-- dao -->
 	<bean id="baseDao" class="com.buildings.dao.BaseDaoImpl" />
 	<bean id="budynekDao" class="com.buildings.dao.BudynekDaoImpl" parent="baseDao" />

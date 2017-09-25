@@ -56,11 +56,14 @@
     <body>
         <jsp:include page="commonHeader.jsp" />
         <div class="container" align="center">
-            <form action="/buildings/account/add">
-                <button>Dodaj nowego lokatora</button><br>
-            </form>    
             <form action="/buildings/rent/create">    
                 <button>Wyslij wynajem do zatwierdzenia</button>
+            </form>    
+            <form action="/buildings/payments/book">
+                <button>Ksieguj wplaty</button><br>
+            </form>    
+            <form action="/buildings/charges/monthly/create">
+                <button>Wykonaj rozliczenie</button><br>
             </form>    
         </div>
         
