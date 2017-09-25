@@ -41,7 +41,7 @@ public class AccountController {
  
         List<KontoRolaV> users = kontoService.getAllKontoList();
         model.addAttribute("users", users);
-        return "manageAccount";
+        return "manageAccountPage";
     }
     
     @RequestMapping(value = { "/enable-{login}" }, method = RequestMethod.GET)
@@ -49,7 +49,7 @@ public class AccountController {
         kontoService.setAktywacjaKonta(login, true);
         List<KontoRolaV> users = kontoService.getAllKontoList();
         model.addAttribute("users", users);
-        return "manageAccount";
+        return "manageAccountPage";
     }
     
     @RequestMapping(value = { "/disable-{login}" }, method = RequestMethod.GET)
@@ -57,7 +57,7 @@ public class AccountController {
         kontoService.setAktywacjaKonta(login, false);
         List<KontoRolaV> users = kontoService.getAllKontoList();
         model.addAttribute("users", users);
-        return "manageAccount";
+        return "manageAccountPage";
     }
     
     @RequestMapping(value = { "/delete-{login}" }, method = RequestMethod.GET)
@@ -65,7 +65,7 @@ public class AccountController {
     	kontoService.removeKonto(login);
         List<KontoRolaV> users = kontoService.getAllKontoList();
         model.addAttribute("users", users);
-        return "manageAccount";
+        return "manageAccountPage";
     }
 	/********************** Model Attributes ******************/
 	@ModelAttribute("rolesList")
