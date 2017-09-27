@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; ccharset=UTF-8"">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Dodawanie budynkow/lokali</title>
 	<link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>
 	<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>

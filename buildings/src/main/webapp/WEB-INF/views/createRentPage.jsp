@@ -115,7 +115,7 @@
 	<div class="generic-container">
 	<jsp:include page="commonHeader.jsp" />
         
-		<div class="well lead">Wyślij do managera</div>
+		<div class="well lead">Utworz wynajem</div>
 		<form:form method="post" action="addTenant" commandName="tenantModel" class="form-horizontal">
         <table cellpadding="10">
         <tr>
@@ -189,7 +189,7 @@
 		  <td>
 				<div class="form-group col-md-12">
 					<div class="col-md-7">
-						<form:input type="text" path="dataUmowyOd" id="dateFrom" class="form-control input-sm" />
+						<form:input type="text" size="100" path="dataUmowyOd" id="dateFrom" class="form-control input-sm" />
 						<div class="has-error">
 							<form:errors path="dataUmowyOd" class="help-inline"/>
 						</div>
@@ -199,7 +199,7 @@
 		  <td>
 				<div class="form-group col-md-12">
 					<div class="col-md-7">
-						<form:input type="text" path="dataUmowyDo" id="dateTo" class="form-control input-sm" />
+						<form:input type="text" size="100" path="dataUmowyDo" id="dateTo" class="form-control input-sm" />
 						<div class="has-error">
 							<form:errors path="dataUmowyDo" class="help-inline"/>
 						</div>
@@ -209,7 +209,7 @@
 		  <td>
 				<div class="form-group col-md-12">
 					<div class="col-md-7">
-						<form:input type="text" path="aktualnaCena" id="curPrice" class="form-control input-sm" disabled="true"/>
+						<form:input type="text" size="100" path="aktualnaCena" id="curPrice" class="form-control input-sm" disabled="true"/>
 						<div class="has-error">
 							<form:errors path="aktualnaCena" class="help-inline"/>
 						</div>
@@ -224,6 +224,7 @@
         
         </div>
          </form:form>
+		 </div>
     </body>
 </html>
 

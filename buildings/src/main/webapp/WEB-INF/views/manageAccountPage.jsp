@@ -24,7 +24,6 @@
 				        <th>Email</th>
 				        <th>Rola</th>
 						<th width="100"></th>
-                        <th width="100"></th>
 					</tr>
 		    	</thead>
 	    		<tbody>
@@ -40,7 +39,6 @@
 						<c:if test = "${user.aktywny != 1}">
 						<td><a href="<c:url value='/account/enable-${user.login}' />">Aktywuj</a></td>
 						</c:if>
-                    	<td><a href="<c:url value='/account/delete-${user.login}' />">Usun</a></td>
 					</tr>
 				</c:forEach>
 	    		</tbody>

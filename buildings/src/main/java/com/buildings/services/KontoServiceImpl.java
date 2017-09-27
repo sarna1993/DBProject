@@ -1,20 +1,28 @@
 package com.buildings.services;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.buildings.dao.interfaces.KontoDao;
+import com.buildings.dao.interfaces.PracownikDao;
 import com.buildings.enums.TypKontaEnum;
 import com.buildings.model.Konto;
 import com.buildings.model.KontoRolaV;
+import com.buildings.model.Pracownik;
 import com.buildings.services.interfaces.KontoService;
 
 public class KontoServiceImpl implements KontoService {
 
 	private KontoDao kontoDao;
+	private PracownikDao pracownikDao;
 	
 	public void setKontoDao(KontoDao kontoDao) {
 		this.kontoDao = kontoDao;
+	}
+	
+	public void setPracownikDao(PracownikDao pracownikDao) {
+		this.pracownikDao = pracownikDao;
 	}
 	
 	@Override

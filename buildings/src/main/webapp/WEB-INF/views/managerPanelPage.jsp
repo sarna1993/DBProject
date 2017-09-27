@@ -18,7 +18,7 @@
                 <button>Ustal cennik</button><br>
             </form>    
             <form action="/buildings/rent/approve">    
-                <button>Zatwierdź wynajem</button>
+                <button>Pokaż liste wynajmów</button>
             </form>    
         </div>
         

@@ -15,7 +15,7 @@
     	<jsp:include page="commonHeader.jsp" />
 		<div class="generic-container" align="center">
             <form action="/buildings/rent/create">    
-                <button>Wyslij wynajem do zatwierdzenia</button>
+                <button>Utwórz wynajem</button>
             </form>    
             <form action="/buildings/payments/book">
                 <button>Ksieguj wplaty</button><br>

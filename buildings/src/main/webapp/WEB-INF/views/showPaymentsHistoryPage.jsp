@@ -31,7 +31,7 @@
                         <td>${p.data}</td>
                         <td>${p.terminPlat}</td>
                         <td>${p.saldoMies}</td>
-                        <td>1500</td>
+                        <td>${p.obciazenie}</td>
 					</tr>
 				</c:forEach>
 	    		</tbody>

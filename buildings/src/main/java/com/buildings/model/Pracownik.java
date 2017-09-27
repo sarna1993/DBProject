@@ -27,11 +27,9 @@ public class Pracownik implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 7616402104099066878L;
-	private BigDecimal idPrac;
+	private Integer idPrac;
+	private Integer idKonto;
 	private Konto konto;
-	private String imiePrac;
-	private String nazwPrac;
-	private String nrTelPrac;
 	private BigDecimal stanowisko;
 	private BigDecimal uprawnienia;
 	private Set<Zadanie> zadanies = new HashSet<Zadanie>(0);
@@ -39,18 +37,15 @@ public class Pracownik implements java.io.Serializable {
 	public Pracownik() {
 	}
 
-	public Pracownik(BigDecimal idPrac, Konto konto) {
+	public Pracownik(Integer idPrac, Konto konto) {
 		this.idPrac = idPrac;
 		this.konto = konto;
 	}
 
-	public Pracownik(BigDecimal idPrac, Konto konto, String imiePrac, String nazwPrac, String nrTelPrac,
+	public Pracownik(Integer idPrac, Konto konto,
 			BigDecimal stanowisko, BigDecimal uprawnienia, Set<Zadanie> zadanies) {
 		this.idPrac = idPrac;
 		this.konto = konto;
-		this.imiePrac = imiePrac;
-		this.nazwPrac = nazwPrac;
-		this.nrTelPrac = nrTelPrac;
 		this.stanowisko = stanowisko;
 		this.uprawnienia = uprawnienia;
 		this.zadanies = zadanies;
@@ -60,14 +55,23 @@ public class Pracownik implements java.io.Serializable {
 	@GeneratedValue(generator = "SEQ_PRACOWNIK", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "SEQ_PRACOWNIK", sequenceName = "ADMIN.SEQ_PRACOWNIK", allocationSize=1)
 	@Column(name = "ID_PRAC", unique = true, nullable = false, precision = 22, scale = 0)
-	public BigDecimal getIdPrac() {
+	public Integer getIdPrac() {
 		return this.idPrac;
 	}
 
-	public void setIdPrac(BigDecimal idPrac) {
+	public void setIdPrac(Integer idPrac) {
 		this.idPrac = idPrac;
 	}
 
+	@Column(name = "ID_KONT", insertable=false, updatable=false)
+	public Integer getIdKonto() {
+		return this.idKonto;
+	}
+
+	public void setIdKonto(Integer idKonto) {
+		this.idKonto = idKonto;
+	}
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ID_KONT", nullable = false)
 	public Konto getKonto() {
@@ -76,33 +80,6 @@ public class Pracownik implements java.io.Serializable {
 
 	public void setKonto(Konto konto) {
 		this.konto = konto;
-	}
-
-	@Column(name = "IMIE_PRAC", length = 1020)
-	public String getImiePrac() {
-		return this.imiePrac;
-	}
-
-	public void setImiePrac(String imiePrac) {
-		this.imiePrac = imiePrac;
-	}
-
-	@Column(name = "NAZW_PRAC", length = 1020)
-	public String getNazwPrac() {
-		return this.nazwPrac;
-	}
-
-	public void setNazwPrac(String nazwPrac) {
-		this.nazwPrac = nazwPrac;
-	}
-
-	@Column(name = "NR_TEL_PRAC", length = 40)
-	public String getNrTelPrac() {
-		return this.nrTelPrac;
-	}
-
-	public void setNrTelPrac(String nrTelPrac) {
-		this.nrTelPrac = nrTelPrac;
 	}
 
 	@Column(name = "STANOWISKO", precision = 22, scale = 0)

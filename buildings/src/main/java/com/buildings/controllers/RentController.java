@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.buildings.dao.interfaces.KontoDao;
 import com.buildings.dao.interfaces.UlicaDao;
+import com.buildings.dao.interfaces.WynajemDao;
 import com.buildings.enums.TypKontaEnum;
 import com.buildings.model.KontoRolaV;
 import com.buildings.model.Miasto;
+import com.buildings.model.Wynajem;
 import com.buildings.model.WynajemExt;
 import com.buildings.services.interfaces.LokalService;
 
@@ -24,6 +26,7 @@ public class RentController {
 	private LokalService lokalService;
 	private UlicaDao ulicaDao;
 	private KontoDao kontoDao;
+	private WynajemDao wynajemDao;
 	
 	public void setUlicaDao(UlicaDao ulicaDao) {
 		this.ulicaDao = ulicaDao;
@@ -37,6 +40,10 @@ public class RentController {
 		this.lokalService = lokalService;
 	}
 	
+	public void setWynajemDao(WynajemDao wynajemDao) {
+		this.wynajemDao = wynajemDao;
+	}
+	
 	@RequestMapping("/create")
 	public String createRent(Model model) {
 		model.addAttribute("tenantModel", new WynajemExt());
@@ -45,6 +52,8 @@ public class RentController {
 	
 	@RequestMapping("/approve")
 	public String approveRent(Model model) {
+        List<Wynajem> wynajem = wynajemDao.getWynajemList();
+        model.addAttribute("rents", wynajem);
 		return "approveRentPage";
 	}
 	
